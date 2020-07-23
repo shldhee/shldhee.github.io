@@ -59,20 +59,6 @@
     </url>
 
     <url>
-        <loc>https://shldhee.github.io/tags/hoisting/</loc>
-        <lastmod>2020-07-23T08:31:33.045Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://shldhee.github.io/tags/var/</loc>
-        <lastmod>2020-07-23T08:31:33.045Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://shldhee.github.io/tags/Introduce/</loc>
         <lastmod>2020-07-23T08:31:33.045Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -94,6 +80,20 @@
     </url>
 
     <url>
+        <loc>https://shldhee.github.io/tags/hoisting/</loc>
+        <lastmod>2020-07-23T08:31:33.045Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://shldhee.github.io/tags/var/</loc>
+        <lastmod>2020-07-23T08:31:33.045Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://shldhee.github.io/tags/undeclared/</loc>
         <lastmod>2020-07-23T08:31:33.045Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -109,27 +109,6 @@
 
     <url>
         <loc>https://shldhee.github.io/tags/type/</loc>
-        <lastmod>2020-07-23T08:31:33.045Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://shldhee.github.io/tags/v8/</loc>
-        <lastmod>2020-07-23T08:31:33.045Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://shldhee.github.io/tags/setTimeout/</loc>
-        <lastmod>2020-07-23T08:31:33.045Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://shldhee.github.io/tags/eventloop/</loc>
         <lastmod>2020-07-23T08:31:33.045Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -186,6 +165,27 @@
 
     <url>
         <loc>https://shldhee.github.io/tags/native/</loc>
+        <lastmod>2020-07-23T08:31:33.045Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://shldhee.github.io/tags/v8/</loc>
+        <lastmod>2020-07-23T08:31:33.045Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://shldhee.github.io/tags/setTimeout/</loc>
+        <lastmod>2020-07-23T08:31:33.045Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://shldhee.github.io/tags/eventloop/</loc>
         <lastmod>2020-07-23T08:31:33.045Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
