@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang>
+  <head><meta name="generator" content="Hexo 3.9.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
+<link rel="canonical" href="https://hasudoki.tistory.com/">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="description" content="React - React-Router">
+
+
+
+
+  <meta name="keywords" content="javascript,react,route,">
+
+
+
+
+
+  <link rel="alternate" href="/feed.xml" title="힘내서 공부해보자">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.png?v=1.1">
+
+
+
+<link rel="canonical" href="https://shldhee.github.io/2018/04/02/react-router/">
+
+
+<meta name="description" content="리액트 라우터는 여러개의 페이지를 가진 애플리케이션을 만들 때 사용합니다.리액트 라우터를 사용하면 애플리캐이션의 페이지 이동, 페이지 전체 이동, URL을 기반으로 페이지의 일부만 다시 작성하게 하는 세부적인 설정 등이 가능합니다.  react-router 설치npm install --save react-router-dom react-router 설명 e">
+<meta name="keywords" content="javascript,react,route">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React - React-Router">
+<meta property="og:url" content="https://shldhee.github.io/2018/04/02/react-router/index.html">
+<meta property="og:site_name" content="힘내서 공부해보자">
+<meta property="og:description" content="리액트 라우터는 여러개의 페이지를 가진 애플리케이션을 만들 때 사용합니다.리액트 라우터를 사용하면 애플리캐이션의 페이지 이동, 페이지 전체 이동, URL을 기반으로 페이지의 일부만 다시 작성하게 하는 세부적인 설정 등이 가능합니다.  react-router 설치npm install --save react-router-dom react-router 설명 e">
+<meta property="og:locale" content="en-En">
+<meta property="og:updated_time" content="2020-07-23T08:31:33.046Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="React - React-Router">
+<meta name="twitter:description" content="리액트 라우터는 여러개의 페이지를 가진 애플리케이션을 만들 때 사용합니다.리액트 라우터를 사용하면 애플리캐이션의 페이지 이동, 페이지 전체 이동, URL을 기반으로 페이지의 일부만 다시 작성하게 하는 세부적인 설정 등이 가능합니다.  react-router 설치npm install --save react-router-dom react-router 설명 e">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+
+
+
+
+<script type="text/javascript">
+  var themeConfig = {
+    fancybox: {
+      enable: false
+    },
+  };
+</script>
+
+
+
+
+  
+
+  <script type="text/javascript">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-103254205-1', 'auto');
+        ga('send', 'pageview');
+  </script>
+
+
+
+    <title> React - React-Router - 힘내서 공부해보자 </title>
+  </head>
+
+  <body>
+    <div id="page">
+      <header id="masthead"><div class="site-header-inner">
+    <h1 class="site-title">
+        <a href="/." class="logo">힘내서 공부해보자</a>
+    </h1>
+
+    <nav id="nav-top">
+        
+            <ul id="menu-top" class="nav-top-items">
+                
+                    <li class="menu-item">
+                        <a href="/archives">
+                            
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        
+  </nav>
+</div>
+
+      </header>
+      <div id="content">
+        
+    <div id="primary">
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          React - React-Router
+        
+      </h1>
+
+      <time class="post-time">
+          Apr 02 2018
+      </time>
+    </header>
+
+
+
+    
+            <div class="post-content">
+            <blockquote>
+<p>리액트 라우터는 여러개의 페이지를 가진 애플리케이션을 만들 때 사용합니다.<br>리액트 라우터를 사용하면 애플리캐이션의 페이지 이동, 페이지 전체 이동, URL을 기반으로 페이지의 일부만 다시 작성하게 하는 세부적인 설정 등이 가능합니다.</p>
+</blockquote>
+<h2 id="react-router-설치"><a href="#react-router-설치" class="headerlink" title="react-router 설치"></a>react-router 설치</h2><p><code>npm install --save react-router-dom</code></p>
+<h2 id="react-router-설명"><a href="#react-router-설명" class="headerlink" title="react-router 설명"></a>react-router 설명</h2><ul>
+<li><code>exact</code> 주어진 경로와 정확히 일치 해야 설정한 컴포넌트를 보여준다.<ul>
+<li><code>/about</code>으로 접속시 Home 컴포넌트와 About 컴포넌트가 같이 보인다.(<code>/</code>, <code>/about</code> 둘다 포함되기 때문)</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">  &lt;Route exact path=<span class="string">"/"</span> component=&#123;Home&#125;/&gt;</span><br><span class="line">  <span class="comment">//&lt;Route path="/" component=&#123;Home&#125;/&gt;</span></span><br><span class="line">  &lt;Route path=<span class="string">"/about"</span> component=&#123;About&#125;/&gt;</span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>Switch</code>를 사용하면 정상적이지 않은 URL 접근을 감지할 수 있다.<ul>
+<li>아래 코드에서 <code>/user/:id</code>,<code>/about/:id</code>에 매치되지 않은 경우 <code>UserList</code> 컴포넌트를 보여준다.</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;Switch&gt;</span><br><span class="line">  &lt;Route path=<span class="string">'/user/:id'</span> component=&#123;UserCard&#125; /&gt;</span><br><span class="line">  &lt;Route path=<span class="string">'/about/:id'</span> component=&#123;About&#125; /&gt;</span><br><span class="line">  &lt;Route component=&#123;UserList&#125; /&gt;</span><br><span class="line">&lt;<span class="regexp">/Switch&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>&lt;Route path=&#39;/user/:id&#39; component={UserCard} /&gt;</code> path에 <code>/user/:id</code>처럼 경로를 지정하면 컴포넌트(여기선 <code>UserCard</code>)의 <code>this.props.match.params.id</code>로 <code>id</code>의 값을 구할 수 있다.</li>
+<li><code>&lt;Link to=&quot;path&quot;&gt;...&lt;/Link&gt;</code>는 <code>&lt;a href=&quot;path&quot;&gt;...&lt;/a&gt;</code>로 작성해도 문제 없지만 <code>&lt;Link&gt;</code>는 브라우저의 이력(<code>history</code>객체)과 관련된 세부적인 설정을 할 수 있다.</li>
+</ul>
+<p><em>Route - CustomerApp.js</em></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;</span><br><span class="line">  BrowserRouter <span class="keyword">as</span> Router,</span><br><span class="line">  Route,</span><br><span class="line">  Link,</span><br><span class="line">  Switch</span><br><span class="line">&#125; <span class="keyword">from</span> <span class="string">'react-router-dom'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> users = [</span><br><span class="line">  &#123;<span class="attr">id</span>: <span class="number">1</span>, <span class="attr">name</span>:<span class="string">"토티"</span>, <span class="attr">info</span>: <span class="string">"AS로마"</span>&#125;,</span><br><span class="line">  &#123;<span class="attr">id</span>: <span class="number">2</span>, <span class="attr">name</span>:<span class="string">"델피에로"</span>, <span class="attr">info</span>: <span class="string">"유벤투스"</span>&#125;,</span><br><span class="line">  &#123;<span class="attr">id</span>: <span class="number">3</span>, <span class="attr">name</span>:<span class="string">"다비즈"</span>, <span class="attr">info</span>: <span class="string">"유벤투스"</span>&#125;,</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> CustomerApp = <span class="function"><span class="params">()</span> =&gt;</span> (</span><br><span class="line">  &lt;Router&gt;</span><br><span class="line">    &lt;div style=&#123;&#123;<span class="attr">margin</span>: <span class="number">20</span>&#125;&#125;&gt;</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;Switch&gt;</span><br><span class="line">          &lt;Route path=<span class="string">'/user/:id'</span> component=&#123;UserCard&#125; /&gt;</span><br><span class="line">          &lt;Route component=&#123;UserList&#125; /&gt;</span><br><span class="line">        &lt;<span class="regexp">/Switch&gt;</span></span><br><span class="line"><span class="regexp">      &lt;/</span>div&gt;</span><br><span class="line">    &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>Router&gt;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserList</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">const</span> ulist = users.map(<span class="function"><span class="params">e</span> =&gt;</span> (</span><br><span class="line">      &lt;li key=&#123;e.id&#125;&gt;</span><br><span class="line">        &lt;Link to = &#123;<span class="string">'/user/'</span> + e.id &#125;&gt;&#123;e.name&#125;&lt;<span class="regexp">/Link&gt;</span></span><br><span class="line"><span class="regexp">      &lt;/</span>li&gt;</span><br><span class="line">    ))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">       &lt;ul&gt;&#123;ulist&#125;&lt;<span class="regexp">/ul&gt;</span></span><br><span class="line"><span class="regexp">    )</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">class UserCard extends Component &#123;</span></span><br><span class="line"><span class="regexp">  render () &#123;</span></span><br><span class="line"><span class="regexp">    const &#123;params&#125; = this.props.match;</span></span><br><span class="line"><span class="regexp">    console.log(typeof params.id); /</span><span class="regexp">/ string</span></span><br><span class="line"><span class="regexp">    const id = parseInt(params.id, 10);</span></span><br><span class="line"><span class="regexp">    console.log(typeof id); /</span><span class="regexp">/ number</span></span><br><span class="line"><span class="regexp">    const user = users.filter(e =&gt; e.id === id)[0];</span></span><br><span class="line"><span class="regexp">    return (</span></span><br><span class="line"><span class="regexp">      &lt;div&gt;</span></span><br><span class="line"><span class="regexp">        &lt;div&gt;&#123;id&#125;: &#123;user.name&#125; - &#123;user.info&#125;&lt;/</span>div&gt;</span><br><span class="line">        &lt;div&gt;<span class="xml"><span class="tag">&lt;<span class="name">Link</span> <span class="attr">to</span>=<span class="string">'/'</span>&gt;</span>-&gt; 뒤로가기<span class="tag">&lt;/<span class="name">Link</span>&gt;</span></span><span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">      &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    )</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">export default CustomerApp;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="결론"><a href="#결론" class="headerlink" title="결론"></a>결론</h2><ul>
+<li>리액트 라우터를 사용하면 간단하게 화면 전환을 구현할 수 있다.</li>
+<li>리액트 라우터는 고정 헤더와 푸터를 지정할 수 있다.</li>
+<li>URL 매개변수를 지정해서 매개변수를 기반으로 컴포넌트의 내용을 변경할 수 있습니다.</li>
+</ul>
+
+            </div>
+          
+
+    
+      <footer class="post-footer">
+		
+		<div class="post-tags">
+		  
+			<a href="/tags/javascript/">javascript</a>
+		  
+			<a href="/tags/react/">react</a>
+		  
+			<a href="/tags/route/">route</a>
+		  
+		</div>
+		
+
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2018/04/08/DOM/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">JavaScript - DOM이란?</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    
+    
+      <a class="next" href="/2018/03/31/react-flux/">
+        <span class="next-text nav-default">React - FLUX</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+        
+  <div class="comments" id="comments">
+    
+    <div style="text-align:center;">
+        <button class="btn" id="load-disqus" onclick="disqus.load();">Disqus 댓글 보기</button>
+    </div>
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+      </footer>
+    
+  </article>
+
+    </div>
+
+      </div>
+
+      <footer id="colophon"><span class="copyright-year">
+    
+        &copy;
+    
+        2017 -
+    
+    2020
+    <span class="footer-author">ddoka.</span>
+    <span class="power-by">
+        Powered by <a class="hexo-link" href="https://hexo.io/" rel="external nofollow noopener noreferrer" target="_blank">Hexo</a> and <a class="theme-link" href="https://github.com/frostfan/hexo-theme-polarbear" rel="external nofollow noopener noreferrer" target="_blank">Polar Bear</a>
+    </span>
+</span>
+
+  <script src="https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js"></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+    
+
+<script type="text/javascript">
+  var disqus_shortname = 'shldhee';
+  var disqus_identifier = '2018/04/02/react-router/';
+
+  var disqus_title = "React - React-Router";
+
+
+  var disqus = {
+    load : function disqus(){
+        if(typeof DISQUS !== 'object') {
+          (function () {
+          var s = document.createElement('script'); s.async = true;
+          s.type = 'text/javascript';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+          }());
+          $('#load-disqus').remove(); ///加载后移除按钮
+        }
+    }
+  }
+
+  
+    var disqus_config = function () {
+        this.page.url = disqus_url;
+        this.page.identifier = disqus_identifier;
+        this.page.title = disqus_title;
+    };
+  
+
+</script>
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+
+    <script type="text/javascript" src="/js/src/theme.js?v=1.1"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=1.1"></script>
+
+  </body>
+</html>

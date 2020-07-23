@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang>
+  <head><meta name="generator" content="Hexo 3.9.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
+<link rel="canonical" href="https://hasudoki.tistory.com/">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="description" content="Javascript-Type">
+
+
+
+
+  <meta name="keywords" content="javascript,type,undefined,undeclared,">
+
+
+
+
+
+  <link rel="alternate" href="/feed.xml" title="힘내서 공부해보자">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.png?v=1.1">
+
+
+
+<link rel="canonical" href="https://shldhee.github.io/2019/04/09/javascript-type/">
+
+
+<meta name="description" content="Javascript - type type(타입)이란 자바스크립트 엔진, 개발자 모두에게 어떤 값을 다른 값과 분별할 수 있는, 고유한 내부 특성의 집합  1.1 타입, 그 실체를 이해하자 타입별로 내재된 특성을 제대로 알아야 값을 다른 타입으로 변환하는 방법을 정확히 이해할 수 있다.(강제변환) ex) 42를 문자열로 보고 위치 1에서 “2”라는 문자를 추">
+<meta name="keywords" content="javascript,type,undefined,undeclared">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Javascript-Type">
+<meta property="og:url" content="https://shldhee.github.io/2019/04/09/javascript-type/index.html">
+<meta property="og:site_name" content="힘내서 공부해보자">
+<meta property="og:description" content="Javascript - type type(타입)이란 자바스크립트 엔진, 개발자 모두에게 어떤 값을 다른 값과 분별할 수 있는, 고유한 내부 특성의 집합  1.1 타입, 그 실체를 이해하자 타입별로 내재된 특성을 제대로 알아야 값을 다른 타입으로 변환하는 방법을 정확히 이해할 수 있다.(강제변환) ex) 42를 문자열로 보고 위치 1에서 “2”라는 문자를 추">
+<meta property="og:locale" content="en-En">
+<meta property="og:updated_time" content="2020-07-23T08:31:33.045Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Javascript-Type">
+<meta name="twitter:description" content="Javascript - type type(타입)이란 자바스크립트 엔진, 개발자 모두에게 어떤 값을 다른 값과 분별할 수 있는, 고유한 내부 특성의 집합  1.1 타입, 그 실체를 이해하자 타입별로 내재된 특성을 제대로 알아야 값을 다른 타입으로 변환하는 방법을 정확히 이해할 수 있다.(강제변환) ex) 42를 문자열로 보고 위치 1에서 “2”라는 문자를 추">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+
+
+
+
+<script type="text/javascript">
+  var themeConfig = {
+    fancybox: {
+      enable: false
+    },
+  };
+</script>
+
+
+
+
+  
+
+  <script type="text/javascript">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-103254205-1', 'auto');
+        ga('send', 'pageview');
+  </script>
+
+
+
+    <title> Javascript-Type - 힘내서 공부해보자 </title>
+  </head>
+
+  <body>
+    <div id="page">
+      <header id="masthead"><div class="site-header-inner">
+    <h1 class="site-title">
+        <a href="/." class="logo">힘내서 공부해보자</a>
+    </h1>
+
+    <nav id="nav-top">
+        
+            <ul id="menu-top" class="nav-top-items">
+                
+                    <li class="menu-item">
+                        <a href="/archives">
+                            
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        
+  </nav>
+</div>
+
+      </header>
+      <div id="content">
+        
+    <div id="primary">
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          Javascript-Type
+        
+      </h1>
+
+      <time class="post-time">
+          Apr 09 2019
+      </time>
+    </header>
+
+
+
+    
+            <div class="post-content">
+            <h1 id="Javascript-type"><a href="#Javascript-type" class="headerlink" title="Javascript - type"></a>Javascript - type</h1><ul>
+<li><code>type(타입)</code>이란 자바스크립트 엔진, 개발자 모두에게 어떤 값을 다른 값과 분별할 수 있는, 고유한 내부 특성의 집합</li>
+</ul>
+<h2 id="1-1-타입-그-실체를-이해하자"><a href="#1-1-타입-그-실체를-이해하자" class="headerlink" title="1.1 타입, 그 실체를 이해하자"></a>1.1 타입, 그 실체를 이해하자</h2><ul>
+<li>타입별로 내재된 특성을 제대로 알아야 값을 다른 타입으로 변환하는 방법을 정확히 이해할 수 있다.(강제변환)<ul>
+<li>ex) 42를 문자열로 보고 위치 1에서 “2”라는 문자를 추출하려면, 먼저 숫자 42에서 문자열 “42”로 변경(강제변환)해야 한다.</li>
+</ul>
+</li>
+<li>강제변환은 다양한 방식으로 일어나므로 값/타입을 확실히 알아야 추후 문제가 생기지 않는다.</li>
+</ul>
+<h2 id="1-2-내장타입"><a href="#1-2-내장타입" class="headerlink" title="1.2 내장타입"></a>1.2 내장타입</h2><ul>
+<li><code>null</code></li>
+<li><code>undefined</code></li>
+<li><code>boolean</code></li>
+<li><code>number</code></li>
+<li><code>string</code></li>
+<li><code>object</code></li>
+<li><code>symbol(ES6부터)</code></li>
+<li><code>object</code>를 제외한 이들은 <code>원시 타입(primitives)</code>이다.</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typeof</span> <span class="literal">undefined</span> === <span class="string">"undefined"</span> <span class="comment">// true</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="literal">true</span> === <span class="string">"boolean"</span> <span class="comment">// true</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="number">42</span> === <span class="string">"number"</span> <span class="comment">// true</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="string">"42"</span> === <span class="string">"string"</span> <span class="comment">// true</span></span><br><span class="line"><span class="keyword">typeof</span> &#123; <span class="attr">life</span> : <span class="number">42</span> &#125; === <span class="string">"object"</span> <span class="comment">// true</span></span><br><span class="line"><span class="comment">// ES6부터 추가</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="built_in">Symbol</span>() === <span class="string">"symbol"</span> <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>null</code>를 제외한 6개 타입은 자신의 명칭과 동일한 문자열을 반환한다.</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typeof</span> <span class="literal">null</span> === <span class="string">"object"</span> <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>null</code>를 반환하면 좋겠지만 현재 수정하기에는 너무 멀리 온 듯하다…..</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="literal">null</span>;</span><br><span class="line">(!a &amp;&amp; <span class="keyword">typeof</span> a === <span class="string">"object"</span>); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>null</code>을 확인하는 방법은 <code>null</code>이 falsy한 값을 이용해 falsy한 원시값과 object를 이용해 타입을 체크한다.</li>
+<li><code>typeof</code>가 반환하는 문자열은 하나 더 있다. <code>&quot;function&quot;</code></li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typeof</span> <span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>) </span>&#123;...&#125; === <span class="string">"function"</span>; <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>function</code>이 최상위 레벨의 내장타입같지만 명세를 읽어보면 <code>object</code>의 하위 타입이다.</li>
+<li>함수는 <code>호출 가능한 객체(Callable Object)내부 프로퍼티[[Call]]로 호출할 수 있는 객체</code>라고 명시되어 있다.</li>
+<li>함수는 객체이므로 프로퍼티를 사용할 수 있다.<ul>
+<li>함수의 선언된 인자 개수는 함수 객체의 <code>length</code>프로퍼티로 알 수 있다.</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">sum.length; <span class="comment">// 2</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>배열도 객체의 ‘하위 타입’이며 숫자 인덱스를 가지며, <code>length</code> 프로퍼티가 자동으로 관리되는 등 추가 특성을 가지고 있다.</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typeof</span> [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>] === <span class="string">"object"</span> <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="1-3-값은-타입을-가진다"><a href="#1-3-값은-타입을-가진다" class="headerlink" title="1.3 값은 타입을 가진다."></a>1.3 값은 타입을 가진다.</h2><ul>
+<li><strong>값에는 타입이 있지만 변수엔 타입이 없다.</strong></li>
+<li>변수는 언제라도 어떤 형태의 값이라도 가질 수 있다.</li>
+<li>자바스크립트는 <code>타입 강제(type enforcement</code>를 하지 않는다.<ul>
+<li>변수값이 처음에 할당된 값과 동일한 타입일 필요가 없다.(문자열을 넣었다가 숫자를 넣었다 불린을 넣어도 된다.)</li>
+</ul>
+</li>
+<li>반면에, 값은 타입을 절대 바꿀 수 없다.<ul>
+<li>42는 내장된 숫자 타입의 값이고 “42”는 내장된 문자열 타입의 값이다. 이 타입은 절대 바꿀 수 없지만 강제변환을 할 수 있다.</li>
+</ul>
+</li>
+<li>변수에 typeof 연산자를 사용하는건 <code>이 변수의 타입이 무엇이니?</code>랑 같지만 실은 타입이란 개념은 변수에 없으므로 <code>이 변수에 들어있는값의 타입은 무엇이니?</code>라고 묻는게 정확하다.</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">42</span>;</span><br><span class="line"><span class="keyword">typeof</span> a; <span class="comment">// "number"</span></span><br><span class="line"></span><br><span class="line">a = <span class="literal">true</span></span><br><span class="line"><span class="keyword">typeof</span> a; <span class="comment">// "boolean"</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>typeof 연산자의 반환값은 언제나 문자열이다.</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typeof</span> <span class="keyword">typeof</span> <span class="number">42</span>; <span class="comment">// string</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="1-3-1-값이-없는-undefined-vs-선언되지-않은-undeclared"><a href="#1-3-1-값이-없는-undefined-vs-선언되지-않은-undeclared" class="headerlink" title="1.3.1 값이 없는(undefined) vs 선언되지 않은(undeclared)"></a>1.3.1 값이 없는(undefined) vs 선언되지 않은(undeclared)</h3><ul>
+<li><code>undefined</code> : 접근 가능한 스코프에 변수가 선언되었으나 현재 아무런 값도 할당되지 않는 상태</li>
+<li><code>undeclared</code> : 변수 자체가 선언조차 되지 않은 상태</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a;</span><br><span class="line"></span><br><span class="line">a; <span class="comment">// undefined;</span></span><br><span class="line">b; <span class="comment">// ReferenceError: b가 정의되지 않았습니다.</span></span><br><span class="line"><span class="comment">// b is not defined</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>undefined</code>와 <code>b is not defined</code>랑 뜻이 다르니 꼭 참고하자.</li>
+<li>선언되지 않은 변수의 typeof 변수는 더 헷갈린다.</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a;</span><br><span class="line"><span class="keyword">typeof</span> a; <span class="comment">// undefined</span></span><br><span class="line"><span class="keyword">typeof</span> b; <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>typeof는 선언되지 않는 변수인데 오류를 발생하지 않는다.</li>
+<li><strong>이것이 바로 typeof만의 특별한 안전가드</strong>이다.</li>
+</ul>
+<h3 id="1-3-2-선언되지-않는-변수"><a href="#1-3-2-선언되지-않는-변수" class="headerlink" title="1.3.2 선언되지 않는 변수"></a>1.3.2 선언되지 않는 변수</h3><ul>
+<li>여러 스크립트 파일의 변수들이 전역 네임스페이스를 공유할때, typeof의 안전 가드는 의외로 쓸모가 있다.</li>
+<li>존재하지 않는 기능이나 전역변수 플래그 등을 사용할때</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// DEBUG가 선언되지 않았을 경우 이떄는 에러가 난다.</span></span><br><span class="line"><span class="keyword">if</span> (DEBUG) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"디버깅 시작"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// typeof 안전가드를 사용해 에러가 나지 않는다.</span></span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">typeof</span> DEBUG !== <span class="string">"undefined"</span>) &#123;</span><br><span class="line">  coosole.log(<span class="string">"디버깅 시작"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 새로운 폴리필 기능을 추가할때</span></span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">typeof</span> sum === <span class="string">"undefined"</span>) &#123;</span><br><span class="line">  sum = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; ... &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>새로운 폴리필 기능을 추가할때 <code>var sum = function() {}</code>대신 <code>sum = function() {}</code>를 사용하는 이유는 <code>var</code>를 사용시에는 호이스팅이 적용되어 최상위에 <code>sum</code>이 선언된다.</p>
+</li>
+<li><p>이러한 경우 <code>sum</code>이 다른곳에 존재하여 여기서 사용이 되지 않아도 중복 선언이 되면 오류를 내는 경우가 있으므로 조심해야 한다.</p>
+</li>
+<li><p>ES6에서는 <code>let</code>는 블록스코프가 적용되므로 문제가 발생하지 않는다.</p>
+</li>
+<li><p>소스를 복사해서 붙혀넣기할때 소스안에 특정 변수값이 정의되어 있는지 체크할때</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">doSomethingCool</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> helper = (<span class="keyword">typeof</span> Feature !== <span class="string">"undefined"</span>) ? Feature : <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;...&#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> val = helper();</span><br><span class="line">  <span class="comment">//</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>Feature</code>라는 변수가 있으면 그대로 사용하고 없으면 새로 만든 함수를 할당하여 사용한다.</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">feature</span>(<span class="params"></span>) </span>&#123; <span class="keyword">return</span> <span class="string">"새로운 기능"</span> &#125;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">doSomethingCool</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> helper = (<span class="keyword">typeof</span> feature !== <span class="string">"undefined"</span>) ? feature : <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; <span class="keyword">return</span> <span class="string">"기본 기능"</span> &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  doSomethingCool();</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>새로운 기능을 선언하고 없으면 기본 기능을 사용</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">doSomethingCool</span>(<span class="params">feature</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> helper = feature || <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; <span class="keyword">return</span> <span class="string">"기본기능"</span>; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>의존성 주입 설계 패턴</li>
+<li>참고 : <a href="https://m.blog.naver.com/PostView.nhn?blogId=pjt3591oo&amp;logNo=220893520541&amp;proxyReferer=https%3A%2F%2Fwww.google.com%2F" rel="external nofollow noopener noreferrer" target="_blank">https://m.blog.naver.com/PostView.nhn?blogId=pjt3591oo&amp;logNo=220893520541&amp;proxyReferer=https%3A%2F%2Fwww.google.com%2F</a></li>
+</ul>
+<h2 id="1-4-정리하기"><a href="#1-4-정리하기" class="headerlink" title="1.4 정리하기"></a>1.4 정리하기</h2><ul>
+<li>타입은 값의 내재된 특성을 정의한다.</li>
+<li>자바스크립트에는 7가지 타입이 있다.</li>
+<li>변수는 타입이 없고 값은 타입이 있다.</li>
+<li><code>undefined</code>, <code>undeclared</code> 큰 차이가 있다. 아예 다르다.</li>
+<li><code>typeof</code> 안전가드의 활용이 제법 쓸만하다.</li>
+</ul>
+
+            </div>
+          
+
+    
+      <footer class="post-footer">
+		
+		<div class="post-tags">
+		  
+			<a href="/tags/javascript/">javascript</a>
+		  
+			<a href="/tags/type/">type</a>
+		  
+			<a href="/tags/undefined/">undefined</a>
+		  
+			<a href="/tags/undeclared/">undeclared</a>
+		  
+		</div>
+		
+
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2019/04/11/Javascript-value/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">Javascript-value</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    
+    
+      <a class="next" href="/2019/01/17/css-nth/">
+        <span class="next-text nav-default">CSS - nth-child, nth-of-type 알아보기</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+        
+  <div class="comments" id="comments">
+    
+    <div style="text-align:center;">
+        <button class="btn" id="load-disqus" onclick="disqus.load();">Disqus 댓글 보기</button>
+    </div>
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+      </footer>
+    
+  </article>
+
+    </div>
+
+      </div>
+
+      <footer id="colophon"><span class="copyright-year">
+    
+        &copy;
+    
+        2017 -
+    
+    2020
+    <span class="footer-author">ddoka.</span>
+    <span class="power-by">
+        Powered by <a class="hexo-link" href="https://hexo.io/" rel="external nofollow noopener noreferrer" target="_blank">Hexo</a> and <a class="theme-link" href="https://github.com/frostfan/hexo-theme-polarbear" rel="external nofollow noopener noreferrer" target="_blank">Polar Bear</a>
+    </span>
+</span>
+
+  <script src="https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js"></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+    
+
+<script type="text/javascript">
+  var disqus_shortname = 'shldhee';
+  var disqus_identifier = '2019/04/09/javascript-type/';
+
+  var disqus_title = "Javascript-Type";
+
+
+  var disqus = {
+    load : function disqus(){
+        if(typeof DISQUS !== 'object') {
+          (function () {
+          var s = document.createElement('script'); s.async = true;
+          s.type = 'text/javascript';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+          }());
+          $('#load-disqus').remove(); ///加载后移除按钮
+        }
+    }
+  }
+
+  
+    var disqus_config = function () {
+        this.page.url = disqus_url;
+        this.page.identifier = disqus_identifier;
+        this.page.title = disqus_title;
+    };
+  
+
+</script>
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+
+    <script type="text/javascript" src="/js/src/theme.js?v=1.1"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=1.1"></script>
+
+  </body>
+</html>

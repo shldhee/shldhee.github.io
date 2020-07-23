@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang>
+  <head><meta name="generator" content="Hexo 3.9.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
+<link rel="canonical" href="https://hasudoki.tistory.com/">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="description" content="React - react-redux-1(reducer, connect, mapStateToProps)">
+
+
+
+
+  <meta name="keywords" content="react, redux, reducer, container, component, mapStateToProps, connect,">
+
+
+
+
+
+  <link rel="alternate" href="/feed.xml" title="힘내서 공부해보자">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.png?v=1.1">
+
+
+
+<link rel="canonical" href="https://shldhee.github.io/2017/12/21/react-redux-1/">
+
+
+<meta name="description" content="REACT리듀서1. 리듀서 생성2. 어플리케이션과 연결reducer_books.js 1234&amp;#123;  books: [&amp;#123;title:&quot;harryPotter&quot;&amp;#125;,&amp;#123;title:&apos;Javascript&apos;&amp;#125;], // Books Reducer  activeBook: &amp;#123;title:&apos;Javascript: The Good part">
+<meta name="keywords" content="react, redux, reducer, container, component, mapStateToProps, connect">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React - react-redux-1(reducer, connect, mapStateToProps)">
+<meta property="og:url" content="https://shldhee.github.io/2017/12/21/react-redux-1/index.html">
+<meta property="og:site_name" content="힘내서 공부해보자">
+<meta property="og:description" content="REACT리듀서1. 리듀서 생성2. 어플리케이션과 연결reducer_books.js 1234&amp;#123;  books: [&amp;#123;title:&quot;harryPotter&quot;&amp;#125;,&amp;#123;title:&apos;Javascript&apos;&amp;#125;], // Books Reducer  activeBook: &amp;#123;title:&apos;Javascript: The Good part">
+<meta property="og:locale" content="en-En">
+<meta property="og:updated_time" content="2020-07-23T08:31:33.046Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="React - react-redux-1(reducer, connect, mapStateToProps)">
+<meta name="twitter:description" content="REACT리듀서1. 리듀서 생성2. 어플리케이션과 연결reducer_books.js 1234&amp;#123;  books: [&amp;#123;title:&quot;harryPotter&quot;&amp;#125;,&amp;#123;title:&apos;Javascript&apos;&amp;#125;], // Books Reducer  activeBook: &amp;#123;title:&apos;Javascript: The Good part">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+
+
+
+
+<script type="text/javascript">
+  var themeConfig = {
+    fancybox: {
+      enable: false
+    },
+  };
+</script>
+
+
+
+
+  
+
+  <script type="text/javascript">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-103254205-1', 'auto');
+        ga('send', 'pageview');
+  </script>
+
+
+
+    <title> React - react-redux-1(reducer, connect, mapStateToProps) - 힘내서 공부해보자 </title>
+  </head>
+
+  <body>
+    <div id="page">
+      <header id="masthead"><div class="site-header-inner">
+    <h1 class="site-title">
+        <a href="/." class="logo">힘내서 공부해보자</a>
+    </h1>
+
+    <nav id="nav-top">
+        
+            <ul id="menu-top" class="nav-top-items">
+                
+                    <li class="menu-item">
+                        <a href="/archives">
+                            
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        
+  </nav>
+</div>
+
+      </header>
+      <div id="content">
+        
+    <div id="primary">
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          React - react-redux-1(reducer, connect, mapStateToProps)
+        
+      </h1>
+
+      <time class="post-time">
+          Dec 21 2017
+      </time>
+    </header>
+
+
+
+    
+            <div class="post-content">
+            <h1 id="REACT"><a href="#REACT" class="headerlink" title="REACT"></a>REACT</h1><h2 id="리듀서"><a href="#리듀서" class="headerlink" title="리듀서"></a>리듀서</h2><h4 id="1-리듀서-생성"><a href="#1-리듀서-생성" class="headerlink" title="1. 리듀서 생성"></a>1. 리듀서 생성</h4><h4 id="2-어플리케이션과-연결"><a href="#2-어플리케이션과-연결" class="headerlink" title="2. 어플리케이션과 연결"></a>2. 어플리케이션과 연결</h4><p><em>reducer_books.js</em></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  books: [&#123;<span class="attr">title</span>:<span class="string">"harryPotter"</span>&#125;,&#123;<span class="attr">title</span>:<span class="string">'Javascript'</span>&#125;], <span class="comment">// Books Reducer</span></span><br><span class="line">  activeBook: &#123;<span class="attr">title</span>:<span class="string">'Javascript: The Good parts'</span>&#125; <span class="comment">// activeBook Reducer</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>books</code> : key 스테이트의 이름</li>
+<li><code>[{title:&quot;harryPotter&quot;},{title:&#39;Javascript&#39;}]</code> : value 리듀서 그 자체</li>
+</ul>
+<p><em>index.js</em></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> rootReducer = combineReducers(&#123;</span><br><span class="line">  books: booksReducer</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>state 매핑</li>
+<li><code>books</code> : <code>books</code></li>
+<li><code>booksReducer</code> : <code>[{title:&quot;harryPotter&quot;},{title:&#39;Javascript&#39;}]</code></li>
+</ul>
+<p><em>BooksReducer 불러오기</em><br><code>import BooksReducer from &#39;./reducer_books</code></p>
+<h2 id="리액트-리덕스"><a href="#리액트-리덕스" class="headerlink" title="리액트-리덕스"></a>리액트-리덕스</h2><h4 id="1-리액트와-리덕스를-연결하는-라이브러리-react-redux"><a href="#1-리액트와-리덕스를-연결하는-라이브러리-react-redux" class="headerlink" title="1. 리액트와 리덕스를 연결하는 라이브러리 react-redux"></a>1. 리액트와 리덕스를 연결하는 라이브러리 react-redux</h4><ul>
+<li>리액트 컴포넌트에서 스테이트를 주입할 때 이 브릿지를 이용할 수 있다.</li>
+<li>이 데이터를 컴포넌트로 주입시키는 것을 <strong>컨테이너라고</strong> 한다.</li>
+<li>컨테이너는 리덕스에 의해 만들어지는 스테이트를 직접 접근하는 컴포넌트라는 것을 기억하세요.</li>
+<li>가장 상위에 있는 컴포넌트가 리덕스 스테이트를 접근하는 컨테이너로 지정한다.<br><code>App&gt;BookList+DetailBook</code> 일 때 App은 DOM 컴포넌트이므로 BookList, DetailBook 컴포넌트가 컨테이너 역할을 한다.</li>
+</ul>
+<h4 id="2-redux-state-적용-컨테이너"><a href="#2-redux-state-적용-컨테이너" class="headerlink" title="2. redux state 적용 컨테이너"></a>2. redux state 적용 컨테이너</h4><p><em>mapStateToProps sample</em></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; connect &#125; <span class="keyword">from</span> react-redux;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">this</span>.props.asdf); <span class="comment">// -&gt; 1234</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mapStateToProps</span>(<span class="params">state</span>) </span>&#123; <span class="comment">// state는 BookList, activeBook 배열을 가지고 있다.</span></span><br><span class="line">  <span class="comment">// 반환되는 것들은 Booklist에서 Props를 사용된다. this.props</span></span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    asdf: <span class="string">'1234'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><em>using mapStateToProps, reducer_books.js 참조</em></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; connect &#125; <span class="keyword">from</span> react-redux;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">this</span>.props.asdf); <span class="comment">// -&gt; 1234</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mapStateToProps</span>(<span class="params">state</span>) </span>&#123; <span class="comment">// state는 BookList, activeBook 배열을 가지고 있다.</span></span><br><span class="line">  <span class="comment">// 반환되는 것들은 Booklist에서 Props를 사용된다. this.props</span></span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    books: state.books;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>본문에서 <code>this.props.books</code> 사용하기 위해 <code>books</code> 프로퍼티를 리턴한다.</li>
+<li><code>state.books</code>는 state는 <em>reducer_books.js</em> 에 있는 리턴 배열</li>
+<li><code>connect</code>함수는 이 컴포넌트를 자겨오고 <code>mapStateToProps</code>를 가져와 컨테이너를 반환한다.</li>
+<li><code>mapStateToProps</code>가 react-redux를 연결하는 접착제역할을 한다.</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> connect(mapStateToProps)(BookList);</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>state가 바뀔때마다 리 렌더링</li>
+<li><code>connect</code> state 바뀔때마다 반환되는 객체가 <code>this.props</code>로 할당</li>
+</ol>
+<h4 id="구조-및-전체-소스"><a href="#구조-및-전체-소스" class="headerlink" title="구조 및 전체 소스"></a>구조 및 전체 소스</h4><ul>
+<li>containers/book-list.js</li>
+<li>reducers/index.js</li>
+<li>reducers/reducer_books.js</li>
+</ul>
+<p><em>index.js</em></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; combineReducers &#125; <span class="keyword">from</span> <span class="string">'redux'</span>;</span><br><span class="line"><span class="keyword">import</span> booksReducer <span class="keyword">from</span> <span class="string">'./reducer_books'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> rootReducer = combineReducers(&#123;</span><br><span class="line">  books: booksReducer,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> rootReducer;</span><br></pre></td></tr></table></figure>
+
+<p><em>reducer_books.js</em></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> [</span><br><span class="line">    &#123; <span class="attr">title</span>: <span class="string">'Javascript: The Good Parts'</span>&#125;,</span><br><span class="line">    &#123; <span class="attr">title</span>: <span class="string">'Javascript: ES6'</span>&#125;,</span><br><span class="line">    &#123; <span class="attr">title</span>: <span class="string">'Javascript: React'</span>&#125;,</span><br><span class="line">    &#123; <span class="attr">title</span>: <span class="string">'Javascript: CookBook'</span>&#125;,</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><em>book-list.js</em></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; connect &#125; <span class="keyword">from</span> <span class="string">'react-redux'</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BookList</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  renderList() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.props.books.map(<span class="function">(<span class="params">book</span>) =&gt;</span></span><br><span class="line">      <span class="keyword">return</span> (</span><br><span class="line">        &lt;li key=&#123;book.title&#125; className=<span class="string">"list-group-item"</span>&gt;&#123;book.title&#125;&lt;<span class="regexp">/li&gt;</span></span><br><span class="line"><span class="regexp">      );</span></span><br><span class="line"><span class="regexp">    &#125;);</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">  render() &#123;</span></span><br><span class="line"><span class="regexp">    return (</span></span><br><span class="line"><span class="regexp">      &lt;ul className="list-group col-sm-4"&gt;&#123;this.renderList()&#125;&lt;/u</span>l&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mapStateToProps</span>(<span class="params">state</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    books: state.books;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> connect(mapStateToProps)(BookList);</span><br></pre></td></tr></table></figure>
+
+
+            </div>
+          
+
+    
+      <footer class="post-footer">
+		
+		<div class="post-tags">
+		  
+			<a href="/tags/react-redux-reducer-container-component-mapStateToProps-connect/">react, redux, reducer, container, component, mapStateToProps, connect</a>
+		  
+		</div>
+		
+
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2017/12/21/javascript-runtime/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">JavaScript - Runtime</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    
+    
+      <a class="next" href="/2017/12/20/algo-5/">
+        <span class="next-text nav-default">Algorithm - Harshad(Level2)</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+        
+  <div class="comments" id="comments">
+    
+    <div style="text-align:center;">
+        <button class="btn" id="load-disqus" onclick="disqus.load();">Disqus 댓글 보기</button>
+    </div>
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+      </footer>
+    
+  </article>
+
+    </div>
+
+      </div>
+
+      <footer id="colophon"><span class="copyright-year">
+    
+        &copy;
+    
+        2017 -
+    
+    2020
+    <span class="footer-author">ddoka.</span>
+    <span class="power-by">
+        Powered by <a class="hexo-link" href="https://hexo.io/" rel="external nofollow noopener noreferrer" target="_blank">Hexo</a> and <a class="theme-link" href="https://github.com/frostfan/hexo-theme-polarbear" rel="external nofollow noopener noreferrer" target="_blank">Polar Bear</a>
+    </span>
+</span>
+
+  <script src="https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js"></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+    
+
+<script type="text/javascript">
+  var disqus_shortname = 'shldhee';
+  var disqus_identifier = '2017/12/21/react-redux-1/';
+
+  var disqus_title = "React - react-redux-1(reducer, connect, mapStateToProps)";
+
+
+  var disqus = {
+    load : function disqus(){
+        if(typeof DISQUS !== 'object') {
+          (function () {
+          var s = document.createElement('script'); s.async = true;
+          s.type = 'text/javascript';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+          }());
+          $('#load-disqus').remove(); ///加载后移除按钮
+        }
+    }
+  }
+
+  
+    var disqus_config = function () {
+        this.page.url = disqus_url;
+        this.page.identifier = disqus_identifier;
+        this.page.title = disqus_title;
+    };
+  
+
+</script>
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+
+    <script type="text/javascript" src="/js/src/theme.js?v=1.1"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=1.1"></script>
+
+  </body>
+</html>

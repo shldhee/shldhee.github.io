@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang>
+  <head><meta name="generator" content="Hexo 3.9.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
+<link rel="canonical" href="https://hasudoki.tistory.com/">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="description" content="JavaScript - Scope, Lexical scoping, Closure">
+
+
+
+
+  <meta name="keywords" content="javascript,scope,lexical scoping,closure,function,">
+
+
+
+
+
+  <link rel="alternate" href="/feed.xml" title="힘내서 공부해보자">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.png?v=1.1">
+
+
+
+<link rel="canonical" href="https://shldhee.github.io/2017/09/29/closure/">
+
+
+<meta name="description" content="Scope 스코프란 현재 접근할 수 있는 변수들의 범위   setTimout이 비동기로 작동되어 for문이 모두 마치고서 setTimout이 실행된다. 예를 들어, for문이 돌때마다 setTimeout은 이벤트 큐에 계속 추가 된다. for문이 끝난 뒤 이벤트 큐에 있는 setTimeout이 순서대로 실행 된다.(이때 엄청 빠른 속도로 이벤트큐에 쌓인다.">
+<meta name="keywords" content="javascript,scope,lexical scoping,closure,function">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript - Scope, Lexical scoping, Closure">
+<meta property="og:url" content="https://shldhee.github.io/2017/09/29/closure/index.html">
+<meta property="og:site_name" content="힘내서 공부해보자">
+<meta property="og:description" content="Scope 스코프란 현재 접근할 수 있는 변수들의 범위   setTimout이 비동기로 작동되어 for문이 모두 마치고서 setTimout이 실행된다. 예를 들어, for문이 돌때마다 setTimeout은 이벤트 큐에 계속 추가 된다. for문이 끝난 뒤 이벤트 큐에 있는 setTimeout이 순서대로 실행 된다.(이때 엄청 빠른 속도로 이벤트큐에 쌓인다.">
+<meta property="og:locale" content="en-En">
+<meta property="og:updated_time" content="2020-07-23T08:31:33.044Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript - Scope, Lexical scoping, Closure">
+<meta name="twitter:description" content="Scope 스코프란 현재 접근할 수 있는 변수들의 범위   setTimout이 비동기로 작동되어 for문이 모두 마치고서 setTimout이 실행된다. 예를 들어, for문이 돌때마다 setTimeout은 이벤트 큐에 계속 추가 된다. for문이 끝난 뒤 이벤트 큐에 있는 setTimeout이 순서대로 실행 된다.(이때 엄청 빠른 속도로 이벤트큐에 쌓인다.">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+
+
+
+
+<script type="text/javascript">
+  var themeConfig = {
+    fancybox: {
+      enable: false
+    },
+  };
+</script>
+
+
+
+
+  
+
+  <script type="text/javascript">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-103254205-1', 'auto');
+        ga('send', 'pageview');
+  </script>
+
+
+
+    <title> JavaScript - Scope, Lexical scoping, Closure - 힘내서 공부해보자 </title>
+  </head>
+
+  <body>
+    <div id="page">
+      <header id="masthead"><div class="site-header-inner">
+    <h1 class="site-title">
+        <a href="/." class="logo">힘내서 공부해보자</a>
+    </h1>
+
+    <nav id="nav-top">
+        
+            <ul id="menu-top" class="nav-top-items">
+                
+                    <li class="menu-item">
+                        <a href="/archives">
+                            
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        
+  </nav>
+</div>
+
+      </header>
+      <div id="content">
+        
+    <div id="primary">
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          JavaScript - Scope, Lexical scoping, Closure
+        
+      </h1>
+
+      <time class="post-time">
+          Sep 29 2017
+      </time>
+    </header>
+
+
+
+    
+            <div class="post-content">
+            <h2 id="Scope"><a href="#Scope" class="headerlink" title="Scope"></a>Scope</h2><blockquote>
+<p>스코프란 현재 접근할 수 있는 변수들의 범위</p>
+</blockquote>
+<ul>
+<li><code>setTimout</code>이 비동기로 작동되어 <code>for</code>문이 모두 마치고서 <code>setTimout</code>이 실행된다.</li>
+<li>예를 들어, <code>for</code>문이 돌때마다 <code>setTimeout</code>은 이벤트 큐에 계속 추가 된다.</li>
+<li><code>for</code>문이 끝난 뒤 이벤트 큐에 있는 <code>setTimeout</code>이 순서대로 실행 된다.(이때 엄청 빠른 속도로 이벤트큐에 쌓인다.)</li>
+<li>이때 <code>setTimeout</code>에는 <code>i</code>값을 갖고 있는데 <code>for</code>문이 다 끝나고 나면 <code>i</code>의 값은 4이므로 4가 출력된다.</li>
+<li>참조 : <a href="https://shldhee.github.io/2017/12/21/javascript-runtime/">자바스크립트-런타임</a></li>
+</ul>
+<p><em>이슈 소스 예제</em></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++) &#123;</span><br><span class="line">  setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(i);</span><br><span class="line">  &#125;, <span class="number">1000</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// result</span></span><br><span class="line"><span class="comment">// 4</span></span><br><span class="line"><span class="comment">// 4</span></span><br><span class="line"><span class="comment">// 4</span></span><br><span class="line"><span class="comment">// 4</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>i</code>는 글로벌 스코프이고 <code>setTimeout</code>안에 함수 스코프(<code>S</code>라고 한다.)가 <code>for</code>문을 돌때마다 생긴다.</li>
+<li>이때 생기는 <code>S</code>스코프와 글로벌 스코프의 스코프 체인(scope-chain)이 만들어 진다.</li>
+</ul>
+<pre class="mermaid">graph RL
+A[S scope <br> empty scope] --> D[global scope<br> i = 4]
+B[S scope <br> empty scope] --> D[global scope<br> i = 4]
+C[S scope <br> empty scope] --> D[global scope<br> i = 4]
+E[S scope <br> empty scope] --> D[global scope<br> i = 4]</pre>
+
+<p><em>수정 코드</em></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++) &#123;</span><br><span class="line">	setTimeout((<span class="function"><span class="keyword">function</span>(<span class="params">i</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(i);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)(i), <span class="number">1000</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="어휘적-유효-범위-Lexical-scoping"><a href="#어휘적-유효-범위-Lexical-scoping" class="headerlink" title="어휘적 유효 범위 (Lexical scoping)"></a>어휘적 유효 범위 (Lexical scoping)</h2><ul>
+<li>내부 함수는 외부 함수에 접근할 권한을 가지고 있다. (<code>displayName()</code>는 부모함수 <code>init()</code>에 선언된 변수 <code>name</code>에 접근)</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">init</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> name = <span class="string">"Mozilla"</span>; <span class="comment">// name은 init의 지역변수</span></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">displayName</span>(<span class="params"></span>) </span>&#123; <span class="comment">// displayName()은 내부 함수, 클로저</span></span><br><span class="line">    alert(name); <span class="comment">// 부모 함수(init())에서 선언된 변수 사용</span></span><br><span class="line">  &#125;</span><br><span class="line">  displayName();</span><br><span class="line">&#125;</span><br><span class="line">init();</span><br></pre></td></tr></table></figure>
+
+<pre class="mermaid">graph RL
+A[displayName scope<br>empty scope] --> B[init scope<br> name = 'Mozliia']</pre>
+
+<h2 id="Closure"><a href="#Closure" class="headerlink" title="Closure"></a>Closure</h2><blockquote>
+<p>“특정 함수가 참조하는 변수들이 선언된 렉시컬 스포트(lexical scope)는 계속 유지되는데, 그 함수와 스코프를 묶어서 클로저라고 한다.”<br>외부함수(포함하고 있는)의 변수에 접근할 수 있는 내부 함수를 일컫습니다.<br>자신의 범위(Scope) 밖에 있는 변수들에 접근할 수 있는 함수를 의미합니다.</p>
+</blockquote>
+<p><em>closure(클로저) 예제</em></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">makeFunc</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> name = <span class="string">"Mozliia"</span>;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">displayName</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    alert(name);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> displayName;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> myFunc = makeFunc();</span><br><span class="line">myFunc();</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>makeFunc()</code> 실행시 선언될때 스코프 체인을 기억한다.</li>
+</ul>
+<pre class="mermaid">graph RL
+A[displayName scope<br>empty scope] --> B[makeFunc scope<br> name = 'Mozliia']</pre>
+
+<ul>
+<li>몇몇의 프로그래밍 언어들은 함수 안의 지역 변수들은 그 함수가 수행되는 기간 동안에만 존재한다.</li>
+<li><code>makeFunc()</code> 실행이 끝나면 <code>name</code>변수에 더 이상 접근할 수 없게 될 것으로 예상하는 것이 합리적이다.</li>
+<li>위 코드는 <code>name</code>변수의 접근이 가능하다.</li>
+<li><strong>그 이유는 자바스크립트의 클로저 때문이다.</strong></li>
+<li>위의 경우, <code>myFunc</code>은 <code>makeFunc</code>이 실행될 때 생성된 <code>displayName</code> 함수의 인스턴스에 대한 참조다.</li>
+</ul>
+<p><em>다른 closure 예제</em></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">makeAdder</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">y</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x + y;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> add5 = makeAdder(<span class="number">5</span>);</span><br><span class="line"><span class="keyword">var</span> add10 = makeAdder(<span class="number">10</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(add5(<span class="number">2</span>));  <span class="comment">// 7</span></span><br><span class="line"><span class="built_in">console</span>.log(add10(<span class="number">2</span>)); <span class="comment">// 12</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>add5</code>는 <code>makeAdder(5)</code>에서 x = 5의 값을 참조한 상태로 function(y)를 반환 받는다.</li>
+<li><code>add5(2)</code> 실행하면 함수 내용이 x + y는 5 + 2가 되어 7이 나온다.</li>
+<li><code>add5</code>와 <code>add10</code>은 둘 다 클로저다. 이들은 같은 함수 본문 정의를 공유하지만 서로 다른 어휘적 환경을 저장한다. <code>add5</code>의 문법적 환경에서 x는 5이지만 <code>add10</code>의 어휘적 환경에서 x는 10이다.</li>
+</ul>
+<h3 id="결론"><a href="#결론" class="headerlink" title="결론"></a>결론</h3><ul>
+<li>클로저는 여러 곳에서 유용하게 사용된다.<ul>
+<li>반복문, 프라이빗 메소드 및 변수를 비슷하게 만들 수 있다.</li>
+</ul>
+</li>
+<li>초기화 작업이 필요할때, 콜백 함수에 동적인 데이터를 넘겨줄때 클로저를 사용</li>
+<li>단점은, 클로저는 메모리를 소모하고, 스코프 생성과 이후 변수 조회에 따른 퍼포먼스 손해가 있다.</li>
+</ul>
+
+            </div>
+          
+
+    
+      <footer class="post-footer">
+		
+		<div class="post-tags">
+		  
+			<a href="/tags/javascript/">javascript</a>
+		  
+			<a href="/tags/scope/">scope</a>
+		  
+			<a href="/tags/lexical-scoping/">lexical scoping</a>
+		  
+			<a href="/tags/closure/">closure</a>
+		  
+			<a href="/tags/function/">function</a>
+		  
+		</div>
+		
+
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2017/12/20/algo-5/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">Algorithm - Harshad(Level2)</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    
+    
+      <a class="next" href="/2017/09/29/javascript-var/">
+        <span class="next-text nav-default">JavaScript - var</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+        
+  <div class="comments" id="comments">
+    
+    <div style="text-align:center;">
+        <button class="btn" id="load-disqus" onclick="disqus.load();">Disqus 댓글 보기</button>
+    </div>
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+      </footer>
+    
+  </article>
+
+    </div>
+
+      </div>
+
+      <footer id="colophon"><span class="copyright-year">
+    
+        &copy;
+    
+        2017 -
+    
+    2020
+    <span class="footer-author">ddoka.</span>
+    <span class="power-by">
+        Powered by <a class="hexo-link" href="https://hexo.io/" rel="external nofollow noopener noreferrer" target="_blank">Hexo</a> and <a class="theme-link" href="https://github.com/frostfan/hexo-theme-polarbear" rel="external nofollow noopener noreferrer" target="_blank">Polar Bear</a>
+    </span>
+</span>
+
+  <script src="https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js"></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+    
+
+<script type="text/javascript">
+  var disqus_shortname = 'shldhee';
+  var disqus_identifier = '2017/09/29/closure/';
+
+  var disqus_title = "JavaScript - Scope, Lexical scoping, Closure";
+
+
+  var disqus = {
+    load : function disqus(){
+        if(typeof DISQUS !== 'object') {
+          (function () {
+          var s = document.createElement('script'); s.async = true;
+          s.type = 'text/javascript';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+          }());
+          $('#load-disqus').remove(); ///加载后移除按钮
+        }
+    }
+  }
+
+  
+    var disqus_config = function () {
+        this.page.url = disqus_url;
+        this.page.identifier = disqus_identifier;
+        this.page.title = disqus_title;
+    };
+  
+
+</script>
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+
+    <script type="text/javascript" src="/js/src/theme.js?v=1.1"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=1.1"></script>
+
+  </body>
+</html>

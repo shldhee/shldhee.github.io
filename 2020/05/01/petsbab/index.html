@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang>
+  <head><meta name="generator" content="Hexo 3.9.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
+<link rel="canonical" href="https://hasudoki.tistory.com/">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="description" content="petsbab를 만들어봤습니다! - 반려동물 사료 직거래 플랫폼">
+
+
+
+
+  <meta name="keywords" content="Javascript,Vue,Blog,Introduce,">
+
+
+
+
+
+  <link rel="alternate" href="/feed.xml" title="힘내서 공부해보자">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.png?v=1.1">
+
+
+
+<link rel="canonical" href="https://shldhee.github.io/2020/05/01/petsbab/">
+
+
+<meta name="description" content="펫츠밥이란? 루비콘에서 사이드프로젝트 인원을 모집하여 매칭까지 해주고!! 멘토님과 함께 사이드 프로젝트를 완성한 상용화 서비스입니다! 돈을 벌기 위한 목적보다는 비영리 목적으로 만들었습니다. 펫츠밥을 통해 프로젝트 완성하는법을 배웠습니다.  아래는 홍보용 스크립트입니다!제목: 반려동물의 밥이 고민일 땐, 펫츠밥! 매일 무슨 밥 먹을 지 고민하시죠?그!런!데">
+<meta name="keywords" content="Javascript,Vue,Blog,Introduce">
+<meta property="og:type" content="article">
+<meta property="og:title" content="petsbab를 만들어봤습니다! - 반려동물 사료 직거래 플랫폼">
+<meta property="og:url" content="https://shldhee.github.io/2020/05/01/petsbab/index.html">
+<meta property="og:site_name" content="힘내서 공부해보자">
+<meta property="og:description" content="펫츠밥이란? 루비콘에서 사이드프로젝트 인원을 모집하여 매칭까지 해주고!! 멘토님과 함께 사이드 프로젝트를 완성한 상용화 서비스입니다! 돈을 벌기 위한 목적보다는 비영리 목적으로 만들었습니다. 펫츠밥을 통해 프로젝트 완성하는법을 배웠습니다.  아래는 홍보용 스크립트입니다!제목: 반려동물의 밥이 고민일 땐, 펫츠밥! 매일 무슨 밥 먹을 지 고민하시죠?그!런!데">
+<meta property="og:locale" content="en-En">
+<meta property="og:image" content="https://images.velog.io/images/muchogusto/post/99aab8e7-ca79-400e-81c2-ffebe26167e0/%E1%84%89%E1%85%B5%E1%84%86%E1%85%AE%E1%84%85%E1%85%B3%E1%86%A8%E1%84%86%E1%85%A5%E1%86%BC.gif">
+<meta property="og:image" content="https://images.velog.io/images/muchogusto/post/598c994a-3dd3-4816-a658-67cbb63ecf17/%E1%84%8B%E1%85%A3%E1%84%8B%E1%85%A9%E1%86%BC.gif">
+<meta property="og:image" content="https://images.velog.io/images/muchogusto/post/7206481c-4a56-440b-aa7b-6afbe9b2bcb7/KakaoTalk_20200429_213721016.gif">
+<meta property="og:image" content="https://images.velog.io/images/muchogusto/post/e4b8c5fe-b8b2-4bad-9eeb-57b8c5c9dd69/KakaoTalk_20200429_213451460.gif">
+<meta property="og:image" content="https://images.velog.io/images/muchogusto/post/8f7d01e6-fb16-4676-8448-f7e9a4812767/KakaoTalk_20200429_213344555.gif">
+<meta property="og:image" content="https://images.velog.io/images/muchogusto/post/99c566ce-4912-4fe2-83f0-02c6496520b7/KakaoTalk_20200429_213853805.gif">
+<meta property="og:image" content="https://images.velog.io/images/muchogusto/post/518ef1a3-de79-4e98-9782-9bd9015c23a3/KakaoTalk_20200429_213608858.gif">
+<meta property="og:updated_time" content="2020-07-23T08:31:33.045Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="petsbab를 만들어봤습니다! - 반려동물 사료 직거래 플랫폼">
+<meta name="twitter:description" content="펫츠밥이란? 루비콘에서 사이드프로젝트 인원을 모집하여 매칭까지 해주고!! 멘토님과 함께 사이드 프로젝트를 완성한 상용화 서비스입니다! 돈을 벌기 위한 목적보다는 비영리 목적으로 만들었습니다. 펫츠밥을 통해 프로젝트 완성하는법을 배웠습니다.  아래는 홍보용 스크립트입니다!제목: 반려동물의 밥이 고민일 땐, 펫츠밥! 매일 무슨 밥 먹을 지 고민하시죠?그!런!데">
+<meta name="twitter:image" content="https://images.velog.io/images/muchogusto/post/99aab8e7-ca79-400e-81c2-ffebe26167e0/%E1%84%89%E1%85%B5%E1%84%86%E1%85%AE%E1%84%85%E1%85%B3%E1%86%A8%E1%84%86%E1%85%A5%E1%86%BC.gif">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+
+
+
+
+<script type="text/javascript">
+  var themeConfig = {
+    fancybox: {
+      enable: false
+    },
+  };
+</script>
+
+
+
+
+  
+
+  <script type="text/javascript">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-103254205-1', 'auto');
+        ga('send', 'pageview');
+  </script>
+
+
+
+    <title> petsbab를 만들어봤습니다! - 반려동물 사료 직거래 플랫폼 - 힘내서 공부해보자 </title>
+  </head>
+
+  <body>
+    <div id="page">
+      <header id="masthead"><div class="site-header-inner">
+    <h1 class="site-title">
+        <a href="/." class="logo">힘내서 공부해보자</a>
+    </h1>
+
+    <nav id="nav-top">
+        
+            <ul id="menu-top" class="nav-top-items">
+                
+                    <li class="menu-item">
+                        <a href="/archives">
+                            
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        
+  </nav>
+</div>
+
+      </header>
+      <div id="content">
+        
+    <div id="primary">
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          petsbab를 만들어봤습니다! - 반려동물 사료 직거래 플랫폼
+        
+      </h1>
+
+      <time class="post-time">
+          May 01 2020
+      </time>
+    </header>
+
+
+
+    
+            <div class="post-content">
+            <h1 id="펫츠밥이란"><a href="#펫츠밥이란" class="headerlink" title="펫츠밥이란?"></a>펫츠밥이란?</h1><ul>
+<li>루비콘에서 사이드프로젝트 인원을 모집하여 매칭까지 해주고!! 멘토님과 함께 사이드 프로젝트를 완성한 상용화 서비스입니다!</li>
+<li>돈을 벌기 위한 목적보다는 비영리 목적으로 만들었습니다. 펫츠밥을 통해 프로젝트 완성하는법을 배웠습니다.</li>
+</ul>
+<h2 id="아래는-홍보용-스크립트입니다"><a href="#아래는-홍보용-스크립트입니다" class="headerlink" title="아래는 홍보용 스크립트입니다!"></a>아래는 홍보용 스크립트입니다!</h2><h3 id="제목-반려동물의-밥이-고민일-땐-펫츠밥"><a href="#제목-반려동물의-밥이-고민일-땐-펫츠밥" class="headerlink" title="제목: 반려동물의 밥이 고민일 땐, 펫츠밥!"></a>제목: 반려동물의 밥이 고민일 땐, 펫츠밥!</h3><p><img src="https://images.velog.io/images/muchogusto/post/99aab8e7-ca79-400e-81c2-ffebe26167e0/%E1%84%89%E1%85%B5%E1%84%86%E1%85%AE%E1%84%85%E1%85%B3%E1%86%A8%E1%84%86%E1%85%A5%E1%86%BC.gif" alt></p>
+<h3 id="매일-무슨-밥-먹을-지-고민하시죠"><a href="#매일-무슨-밥-먹을-지-고민하시죠" class="headerlink" title="매일 무슨 밥 먹을 지 고민하시죠?"></a>매일 무슨 밥 먹을 지 고민하시죠?</h3><h3 id="그-런-데"><a href="#그-런-데" class="headerlink" title="그!런!데!"></a>그!런!데!</h3><p>반려동물은 1년 365일 삼시세끼 같은 밥만 먹인다고요?! 👀<br><img src="https://images.velog.io/images/muchogusto/post/598c994a-3dd3-4816-a658-67cbb63ecf17/%E1%84%8B%E1%85%A3%E1%84%8B%E1%85%A9%E1%86%BC.gif" alt></p>
+<h3 id="반려동물에게-선택의-자유를-주세요"><a href="#반려동물에게-선택의-자유를-주세요" class="headerlink" title="반려동물에게 선택의 자유를 주세요..!"></a>반려동물에게 선택의 자유를 주세요..!</h3><p><img src="https://images.velog.io/images/muchogusto/post/7206481c-4a56-440b-aa7b-6afbe9b2bcb7/KakaoTalk_20200429_213721016.gif" alt></p>
+<h3 id="Hoxy"><a href="#Hoxy" class="headerlink" title="Hoxy..!"></a>Hoxy..!</h3><p>맛보고 구매하고 싶은데 그럴 수는 없고, 큰 용량의 사료가 고민이신가요? 😔<br>다양한 사료를 딱 원하는 만큼만!  구매해서 맛보세요! 😀</p>
+<p><img src="https://images.velog.io/images/muchogusto/post/e4b8c5fe-b8b2-4bad-9eeb-57b8c5c9dd69/KakaoTalk_20200429_213451460.gif" alt></p>
+<h3 id="Hoxy-1"><a href="#Hoxy-1" class="headerlink" title="Hoxy..!"></a>Hoxy..!</h3><p>사료를 대량으로 구매했는데 반려동물이 잘 먹지 않아서 고민이신가요? 😔<br>사료를 종이컵에 담아 판매해보세요! 😀<br><img src="https://images.velog.io/images/muchogusto/post/8f7d01e6-fb16-4676-8448-f7e9a4812767/KakaoTalk_20200429_213344555.gif" alt></p>
+<h3 id="바쁜-반려인들의-시간과-비용을-아끼는-슬기로운-반려생활과"><a href="#바쁜-반려인들의-시간과-비용을-아끼는-슬기로운-반려생활과" class="headerlink" title="바쁜 반려인들의 시간과 비용을 아끼는, 슬기로운 반려생활과"></a>바쁜 반려인들의 시간과 비용을 아끼는, 슬기로운 반려생활과</h3><h3 id="반려동물의-밥취향을-‘펫츠밥’이-응원합니다-💪🏻"><a href="#반려동물의-밥취향을-‘펫츠밥’이-응원합니다-💪🏻" class="headerlink" title="반려동물의 밥취향을 ‘펫츠밥’이 응원합니다! 💪🏻"></a>반려동물의 밥취향을 ‘펫츠밥’이 응원합니다! 💪🏻</h3><p><img src="https://images.velog.io/images/muchogusto/post/99c566ce-4912-4fe2-83f0-02c6496520b7/KakaoTalk_20200429_213853805.gif" alt></p>
+<h3 id="🍚반려동물의-밥-BAB"><a href="#🍚반려동물의-밥-BAB" class="headerlink" title="🍚반려동물의 밥! BAB!"></a>🍚반려동물의 밥! BAB!</h3><p>펫푸드 직거래 플랫폼 PetsBab으로 오세요! 🙌🏻<br><a href="http://www.petsbab.com" rel="external nofollow noopener noreferrer" target="_blank">www.petsbab.com</a><br><img src="https://images.velog.io/images/muchogusto/post/518ef1a3-de79-4e98-9782-9bd9015c23a3/KakaoTalk_20200429_213608858.gif" alt></p>
+<p>#펫츠밥#petsbab<br>#사료#사료공유#사료직거래<br>#종이컵사료<br>#종이컵직거래<br>#사료직거래<br>#동네직거래<br>#반려동물</p>
+
+            </div>
+          
+
+    
+      <footer class="post-footer">
+		
+		<div class="post-tags">
+		  
+			<a href="/tags/Javascript/">Javascript</a>
+		  
+			<a href="/tags/Vue/">Vue</a>
+		  
+			<a href="/tags/Blog/">Blog</a>
+		  
+			<a href="/tags/Introduce/">Introduce</a>
+		  
+		</div>
+		
+
+        
+        
+  <nav class="post-nav">
+    
+    
+      <a class="next" href="/2019/04/17/javascript-native/">
+        <span class="next-text nav-default">javascript-native</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+        
+  <div class="comments" id="comments">
+    
+    <div style="text-align:center;">
+        <button class="btn" id="load-disqus" onclick="disqus.load();">Disqus 댓글 보기</button>
+    </div>
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+      </footer>
+    
+  </article>
+
+    </div>
+
+      </div>
+
+      <footer id="colophon"><span class="copyright-year">
+    
+        &copy;
+    
+        2017 -
+    
+    2020
+    <span class="footer-author">ddoka.</span>
+    <span class="power-by">
+        Powered by <a class="hexo-link" href="https://hexo.io/" rel="external nofollow noopener noreferrer" target="_blank">Hexo</a> and <a class="theme-link" href="https://github.com/frostfan/hexo-theme-polarbear" rel="external nofollow noopener noreferrer" target="_blank">Polar Bear</a>
+    </span>
+</span>
+
+  <script src="https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js"></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+    
+
+<script type="text/javascript">
+  var disqus_shortname = 'shldhee';
+  var disqus_identifier = '2020/05/01/petsbab/';
+
+  var disqus_title = "petsbab를 만들어봤습니다! - 반려동물 사료 직거래 플랫폼";
+
+
+  var disqus = {
+    load : function disqus(){
+        if(typeof DISQUS !== 'object') {
+          (function () {
+          var s = document.createElement('script'); s.async = true;
+          s.type = 'text/javascript';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+          }());
+          $('#load-disqus').remove(); ///加载后移除按钮
+        }
+    }
+  }
+
+  
+    var disqus_config = function () {
+        this.page.url = disqus_url;
+        this.page.identifier = disqus_identifier;
+        this.page.title = disqus_title;
+    };
+  
+
+</script>
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+
+    <script type="text/javascript" src="/js/src/theme.js?v=1.1"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=1.1"></script>
+
+  </body>
+</html>

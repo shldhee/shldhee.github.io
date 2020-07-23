@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang>
+  <head><meta name="generator" content="Hexo 3.9.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
+<link rel="canonical" href="https://hasudoki.tistory.com/">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="description" content="javascript-native">
+
+
+
+
+  <meta name="keywords" content="javascript,native,String,Number,Array,Function,Error,Date,Symbol,">
+
+
+
+
+
+  <link rel="alternate" href="/feed.xml" title="힘내서 공부해보자">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.png?v=1.1">
+
+
+
+<link rel="canonical" href="https://shldhee.github.io/2019/04/17/javascript-native/">
+
+
+<meta name="description" content="1. Javascript - native native(네이티브)란 사실 내장 함수이다.  String()  Number()  Boolean()  Array()  Object()  Function()  RegExp()  Date()  Error()  Symbol()   12345var a = new String(&quot;abc&quot;);typeof a; // &quot;objec">
+<meta name="keywords" content="javascript,native,String,Number,Array,Function,Error,Date,Symbol">
+<meta property="og:type" content="article">
+<meta property="og:title" content="javascript-native">
+<meta property="og:url" content="https://shldhee.github.io/2019/04/17/javascript-native/index.html">
+<meta property="og:site_name" content="힘내서 공부해보자">
+<meta property="og:description" content="1. Javascript - native native(네이티브)란 사실 내장 함수이다.  String()  Number()  Boolean()  Array()  Object()  Function()  RegExp()  Date()  Error()  Symbol()   12345var a = new String(&quot;abc&quot;);typeof a; // &quot;objec">
+<meta property="og:locale" content="en-En">
+<meta property="og:updated_time" content="2020-07-23T08:31:33.045Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="javascript-native">
+<meta name="twitter:description" content="1. Javascript - native native(네이티브)란 사실 내장 함수이다.  String()  Number()  Boolean()  Array()  Object()  Function()  RegExp()  Date()  Error()  Symbol()   12345var a = new String(&quot;abc&quot;);typeof a; // &quot;objec">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+
+
+
+
+<script type="text/javascript">
+  var themeConfig = {
+    fancybox: {
+      enable: false
+    },
+  };
+</script>
+
+
+
+
+  
+
+  <script type="text/javascript">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-103254205-1', 'auto');
+        ga('send', 'pageview');
+  </script>
+
+
+
+    <title> javascript-native - 힘내서 공부해보자 </title>
+  </head>
+
+  <body>
+    <div id="page">
+      <header id="masthead"><div class="site-header-inner">
+    <h1 class="site-title">
+        <a href="/." class="logo">힘내서 공부해보자</a>
+    </h1>
+
+    <nav id="nav-top">
+        
+            <ul id="menu-top" class="nav-top-items">
+                
+                    <li class="menu-item">
+                        <a href="/archives">
+                            
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        
+  </nav>
+</div>
+
+      </header>
+      <div id="content">
+        
+    <div id="primary">
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          javascript-native
+        
+      </h1>
+
+      <time class="post-time">
+          Apr 17 2019
+      </time>
+    </header>
+
+
+
+    
+            <div class="post-content">
+            <h1 id="1-Javascript-native"><a href="#1-Javascript-native" class="headerlink" title="1. Javascript - native"></a>1. Javascript - native</h1><ul>
+<li><p><code>native(네이티브)</code>란 사실 내장 함수이다.</p>
+</li>
+<li><p><code>String()</code></p>
+</li>
+<li><p><code>Number()</code></p>
+</li>
+<li><p><code>Boolean()</code></p>
+</li>
+<li><p><code>Array()</code></p>
+</li>
+<li><p><code>Object()</code></p>
+</li>
+<li><p><code>Function()</code></p>
+</li>
+<li><p><code>RegExp()</code></p>
+</li>
+<li><p><code>Date()</code></p>
+</li>
+<li><p><code>Error()</code></p>
+</li>
+<li><p><code>Symbol()</code></p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">"abc"</span>);</span><br><span class="line"><span class="keyword">typeof</span> a; <span class="comment">// "object" ... "String"이 아니다.</span></span><br><span class="line">a <span class="keyword">instanceof</span> <span class="built_in">String</span>; <span class="comment">// true</span></span><br><span class="line"><span class="built_in">Object</span>.prototype.toString.call(a); <span class="comment">// "[object String]"</span></span><br><span class="line"><span class="built_in">console</span>.log(a); <span class="comment">// String &#123;"abc"&#125; chrome</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>(new String(&quot;abc&quot;))</code> 생성자의 결과는 원시 값 “abc”를 감싼 <strong>객체 래퍼</strong>다.</li>
+<li><code>object</code>하위 타입에 가깝다.</li>
+<li><strong><code>new String(&quot;abc&quot;)</code>은 “abc”를 감싸는 문자열 래퍼를 생성하며 원시 값 “abc”는 아니라는 점</strong></li>
+</ul>
+<h2 id="1-1-내부-Class"><a href="#1-1-내부-Class" class="headerlink" title="1.1 내부 [[Class]]"></a>1.1 내부 [[Class]]</h2><ul>
+<li><code>typeof</code>가 <code>&quot;object&quot;</code>인 값에는 <code>[[Class]]</code>라는 내부 프로퍼티가 추가로 붙는다.</li>
+<li>이 프로퍼티는 직접 접근할 수 없고 <code>Object.prototype.toString()</code>이라는 메서드에 값을 넣어 호출함으로써 존재를 엿 볼 수 있다.</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span>.prototype.toString.call([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]);</span><br><span class="line"><span class="comment">// "[object array]"</span></span><br><span class="line"><span class="built_in">Object</span>.prototype.tostring.call(<span class="regexp">/regex-literal/i</span>);</span><br><span class="line"><span class="comment">// "[object RegExp]"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 원시값은?? 원시값 내부에도 [[Class]] 존재</span></span><br><span class="line"><span class="built_in">Object</span>.prototype.toString.call(<span class="literal">null</span>);</span><br><span class="line"><span class="comment">// "[object Null]"</span></span><br><span class="line"><span class="built_in">Object</span>.prototype.toString.call(<span class="literal">undefined</span>);</span><br><span class="line"><span class="comment">// "[object Undefined]"</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>Null</code>, <code>undedefined</code>는 네이티브 생성자가 없지만 내부 <code>[[Class]]</code> 값을 확인해보니 <code>Null, Undefined</code>다.</li>
+<li>그 밖에 다른 원시 값들도 같은 결과는 낸다. 바로 객체 레퍼로 자동<code>박싱(Boxing)</code>이다.</li>
+</ul>
+<h2 id="1-2-래퍼-박싱하기"><a href="#1-2-래퍼-박싱하기" class="headerlink" title="1.2 래퍼 박싱하기"></a>1.2 래퍼 박싱하기</h2><ul>
+<li>원시 값엔 프로퍼티나 메서드가 없으므로 <code>.length, .toString()</code>으로 접근하려면 원시 값을 객체 래퍼로 감싸줘야 한다. 하지만 자바스크립트는 원시 값을 알아서 박싱해준다.</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="string">"abc"</span>;</span><br><span class="line">a.length; <span class="comment">// 3;</span></span><br><span class="line">a.toUpperCase(); <span class="comment">// "ABC"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 예) i &lt; a.length;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="1-2-1-객체-래퍼의-함정"><a href="#1-2-1-객체-래퍼의-함정" class="headerlink" title="1.2.1 객체 래퍼의 함정"></a>1.2.1 객체 래퍼의 함정</h3><ul>
+<li><code>Boolean</code>으로 래핑한 경우 주의해야 한다.</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> <span class="built_in">Boolean</span>(<span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(!a) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"OOPS!!"</span>); <span class="comment">// 실행되지 않는다.</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>false</code>를 객체 래퍼로 감쌌지만 문제는 객체가 <code>truthy</code>한 점이다. 따라서 조건문에서는 <code>false</code>이므로 실행되지 않는다.</li>
+<li>수동으로 원시 값을 박승하려면 <code>Object()</code>함수를 이용하자(앞에 <code>new</code>키워드가 없다.)</li>
+<li>객체 래퍼로 직접 박싱하는건 권하고 싶지 않다.</li>
+</ul>
+<h2 id="1-3-언박싱"><a href="#1-3-언박싱" class="headerlink" title="1.3 언박싱"></a>1.3 언박싱</h2><ul>
+<li>객체 래퍼의 원시 값은 <code>valueOf()</code> 메서드로 추출한다.</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">'abc'</span>);</span><br><span class="line"><span class="keyword">var</span> b = <span class="keyword">new</span> <span class="built_in">Number</span>(<span class="number">42</span>);</span><br><span class="line"><span class="keyword">var</span> c = <span class="keyword">new</span> <span class="built_in">Boolean</span>(<span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line">a.valueOf(); <span class="comment">// "abc"</span></span><br><span class="line">b.valueOf(); <span class="comment">// 42</span></span><br><span class="line">c.valueOf(); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 이떄도 언박싱이 일어난다.</span></span><br><span class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">"abc"</span>);</span><br><span class="line"><span class="keyword">var</span> b = a + <span class="string">""</span>; <span class="comment">// 'b'에는 언박싱된 "abc"가 대입</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typeof</span> a; <span class="comment">// "object"</span></span><br><span class="line"><span class="keyword">typeof</span> b; <span class="comment">// "string"</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="1-4-네이티브-나는-생성자다"><a href="#1-4-네이티브-나는-생성자다" class="headerlink" title="1.4 네이티브, 나는 생성자다."></a>1.4 네이티브, 나는 생성자다.</h2><ul>
+<li>생성자보단 리터럴 형태로 생성하자.</li>
+</ul>
+<h3 id="1-4-1-Array"><a href="#1-4-1-Array" class="headerlink" title="1.4.1 Array()"></a>1.4.1 Array()</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>);</span><br><span class="line">a; <span class="comment">// [1,2,3]</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> b = <span class="built_in">Array</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>);</span><br><span class="line">b; <span class="comment">// [1,2,3]</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>new</code>가 있고 없고 차이는 없다. 둘은 결과적으로 같다.</li>
+<li><code>Array()</code> 인자를 하나면 받으면 <code>length</code>가 적용되어 크기가 된다.</li>
+<li>빈배열을 만들고 나중에 <code>length</code>프로퍼티에 숫자 값을 할당하는게 맞는데 자바스크립트는 혼란스러운 구조로 되어있다.</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">3</span>);</span><br><span class="line"></span><br><span class="line">a.length; <span class="comment">// 3</span></span><br><span class="line">a;  <span class="comment">// (3) [empty × 3] 윈도우 크롬</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">3</span>);</span><br><span class="line"><span class="keyword">var</span> b = [ <span class="literal">undefined</span>, <span class="literal">undefined</span>, <span class="literal">undefined</span> ];</span><br><span class="line"><span class="keyword">var</span> c = [];</span><br><span class="line">c.length = <span class="number">3</span>;</span><br><span class="line"></span><br><span class="line">a; <span class="comment">// (3) [empty × 3]</span></span><br><span class="line">b; <span class="comment">// (3) [undefined, undefined, undefined]</span></span><br><span class="line">c; <span class="comment">// (3) [empty × 3]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="1-4-2-Object-Function-and-RegExp"><a href="#1-4-2-Object-Function-and-RegExp" class="headerlink" title="1.4.2 Object(), Function(), and RegExp()"></a>1.4.2 Object(), Function(), and RegExp()</h3><ul>
+<li>정말 특별하지 않은 이상 생성자 대신 <strong>리터럴</strong>로 모두 사용하자.</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> c = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line">c.foo = <span class="string">"bar"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> d = &#123; <span class="attr">foo</span>: <span class="string">"bar"</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> e = <span class="keyword">new</span> <span class="built_in">Function</span>(<span class="string">"a"</span>, <span class="string">"return a * 2;"</span>);</span><br><span class="line"><span class="keyword">var</span> f = <span class="function"><span class="keyword">function</span>(<span class="params">a</span>) </span>&#123; <span class="keyword">return</span> a * <span class="number">2</span> &#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">g</span>(<span class="params">a</span>) </span>&#123; <span class="keyword">return</span> a * <span class="number">2</span>; &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> h = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">"^a*b+"</span>,<span class="string">"g"</span>);</span><br><span class="line"><span class="keyword">var</span> i  = <span class="regexp">/^a*b+/g</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-4-3-Date-Error"><a href="#1-4-3-Date-Error" class="headerlink" title="1.4.3 Date(), Error()"></a>1.4.3 Date(), Error()</h3><ul>
+<li><code>Date(), Error()</code>는 리터럴이 없으므로 네이티브, 생성자 함수로 사용해야 한다.</li>
+<li><code>new Date()</code>로 유닉스 타임스탬프 값을 얻는 용도로 사용 <code>getTime()</code></li>
+<li>ES5부터는 <code>Date.now()</code>를 사용하는게 더 쉽다.</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!<span class="built_in">Date</span>.now) &#123;</span><br><span class="line">  <span class="built_in">Date</span>.now = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (<span class="keyword">new</span> <span class="built_in">Date</span>().getTime());</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>error</code>객체의 주 용도는 현재의 실행 스택 콘텍스트를 포착하여 객체에 담는 것</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (!x) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"x를 안줬다"</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>Error</code> 객체 인스턴스에는 적어도 <code>message</code> 프로퍼티가 있고 <code>type</code>등이 포함되어 있을 때도 있다.</li>
+<li>사람들이 보기 쉽게 하려면 <code>.stack</code>프로퍼티 대신 <code>error</code>객체의 <code>toString()</code>를 호출하는 것이 좋다.</li>
+</ul>
+<h3 id="1-4-4-Symbol"><a href="#1-4-4-Symbol" class="headerlink" title="1.4.4 Symbol()"></a>1.4.4 Symbol()</h3><ul>
+<li>ES6에서 처음 선보인, 새로운 원시 값 타입니다.</li>
+<li>심볼은 충돌 염려 없이 객체 프로퍼티로 사용 가능한, 특별한 <code>유일 값</code>이다.</li>
+<li>프로퍼티명으로 사용 가능하다 코드나 콘솔에서 실제 값을 보거나 접근은 불가능하다.</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">obj[<span class="built_in">Symbol</span>.iterator] = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="comment">/* ... */</span> &#125;;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>심볼을 정의하려면 <code>Symbol()</code> 네이티브를 사용 <code>new</code>를 붙이면 에러가 난다!</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> mysym = <span class="built_in">Symbol</span>(<span class="string">"my own symbol"</span>);</span><br><span class="line">mysym; <span class="comment">// Symbol(my own symbol)</span></span><br><span class="line">mysym.toString(); <span class="comment">// "Symbol(my own symbol)"</span></span><br><span class="line"><span class="keyword">typeof</span> mysym; <span class="comment">// "symbol"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> a = &#123;&#125;;</span><br><span class="line">a[mysym] = <span class="string">"footer"</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.getOwnPropertySymbols(a); <span class="comment">// [Symbol(my own symbol)]</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>전용 혹은 특별한 프로퍼티에 사용될 수 있으며, 개발자가 <code>전용/특수/내부 프로퍼티입니다.</code>라고 하면서 <code>_</code>가 붙은 프로퍼티명도 심볼로 대체될 가능성이 높다.</li>
+</ul>
+<h3 id="1-4-5-네이티브-프로토타입"><a href="#1-4-5-네이티브-프로토타입" class="headerlink" title="1.4.5 네이티브 프로토타입"></a>1.4.5 네이티브 프로토타입</h3><ul>
+<li><p>내장 네이티브 생성자는 각자의 <code>.prototype</code> 객체를 가진다.(`Array.prototype, String.prototype 등)</p>
+</li>
+<li><p><code>prototype</code> 객체에는 해당 객체의 하위 타입별로 고유한 로직이 담겨 있다.</p>
+</li>
+<li><p>이를테면 문자열 원시 값을(박싱으로) 확장한 것까지 포함하여 모든 <code>String</code> 객체는 기본적으로 <code>String.prototype</code> 객체에 정의된 메서드에 접근할 수 있다.</p>
+</li>
+<li><p><code>String.prototype.indexOf()</code></p>
+</li>
+<li><p><code>String.prototype.charAt()</code></p>
+</li>
+<li><p><code>String.prototype.substr()</code></p>
+</li>
+<li><p><code>String.prototype.substring()</code></p>
+</li>
+<li><p><code>String.prototype.slice()</code></p>
+</li>
+<li><p><code>String.prototype.toUpperCase()</code></p>
+</li>
+<li><p><code>String.prototype.toLowerCase()</code></p>
+</li>
+<li><p><code>String.prototype.trim()</code></p>
+</li>
+<li><p><strong>이중 문자열 값을 변경하는 메서드는 없고 수저잉 일어나면 늘 기존값으로부터 새로운 값을 생성한다.</strong></p>
+</li>
+<li><p>프로토타임 위임(Delegation) 덕분에 모든 문자열이 이 메서드들을 같이 쓸 수 있다.</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="string">" abc "</span>;</span><br><span class="line"></span><br><span class="line">a.indexOf(<span class="string">"c"</span>); <span class="comment">// 3</span></span><br><span class="line">a.toUpperCase(); <span class="comment">// " ABC ";</span></span><br><span class="line">a.trim(); <span class="comment">// "abc";</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>네이티브 프로토타입은 변경할 수도 있지만 바람직하지 않다.</li>
+<li><code>Function.prototype</code>은 함수, <code>RegExp.prototype</code>은 정규 표현식, <code>Array.prototype</code>은 배열이다.</li>
+</ul>
+<h2 id="1-5-정리하기"><a href="#1-5-정리하기" class="headerlink" title="1.5 정리하기"></a>1.5 정리하기</h2><ul>
+<li>자바스크립트는 원시 값을 감싸는 객체 래퍼, 즉 네이티브(<code>String,Number,Boolean 등</code>)를 제공</li>
+<li>“abc” 같은 원시 값이 있을 때, 이 값의 <code>length</code> 프로퍼티나 <code>String.prototype</code>에 정의된 메서드를 호출하면 자바스크립트는 <strong>자동으로 원시 값을 <code>박싱</code>(해당하는 객체 래퍼로 감싼다)</strong>하여 필요한 프로퍼티와 메서드를 쓸 수 있게 도와준다.</li>
+</ul>
+
+            </div>
+          
+
+    
+      <footer class="post-footer">
+		
+		<div class="post-tags">
+		  
+			<a href="/tags/javascript/">javascript</a>
+		  
+			<a href="/tags/native/">native</a>
+		  
+			<a href="/tags/String/">String</a>
+		  
+			<a href="/tags/Number/">Number</a>
+		  
+			<a href="/tags/Array/">Array</a>
+		  
+			<a href="/tags/Function/">Function</a>
+		  
+			<a href="/tags/Error/">Error</a>
+		  
+			<a href="/tags/Date/">Date</a>
+		  
+			<a href="/tags/Symbol/">Symbol</a>
+		  
+		</div>
+		
+
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2020/05/01/petsbab/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">petsbab를 만들어봤습니다! - 반려동물 사료 직거래 플랫폼</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    
+    
+      <a class="next" href="/2019/04/11/Javascript-value/">
+        <span class="next-text nav-default">Javascript-value</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+        
+  <div class="comments" id="comments">
+    
+    <div style="text-align:center;">
+        <button class="btn" id="load-disqus" onclick="disqus.load();">Disqus 댓글 보기</button>
+    </div>
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+      </footer>
+    
+  </article>
+
+    </div>
+
+      </div>
+
+      <footer id="colophon"><span class="copyright-year">
+    
+        &copy;
+    
+        2017 -
+    
+    2020
+    <span class="footer-author">ddoka.</span>
+    <span class="power-by">
+        Powered by <a class="hexo-link" href="https://hexo.io/" rel="external nofollow noopener noreferrer" target="_blank">Hexo</a> and <a class="theme-link" href="https://github.com/frostfan/hexo-theme-polarbear" rel="external nofollow noopener noreferrer" target="_blank">Polar Bear</a>
+    </span>
+</span>
+
+  <script src="https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js"></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+    
+
+<script type="text/javascript">
+  var disqus_shortname = 'shldhee';
+  var disqus_identifier = '2019/04/17/javascript-native/';
+
+  var disqus_title = "javascript-native";
+
+
+  var disqus = {
+    load : function disqus(){
+        if(typeof DISQUS !== 'object') {
+          (function () {
+          var s = document.createElement('script'); s.async = true;
+          s.type = 'text/javascript';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+          }());
+          $('#load-disqus').remove(); ///加载后移除按钮
+        }
+    }
+  }
+
+  
+    var disqus_config = function () {
+        this.page.url = disqus_url;
+        this.page.identifier = disqus_identifier;
+        this.page.title = disqus_title;
+    };
+  
+
+</script>
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+
+    <script type="text/javascript" src="/js/src/theme.js?v=1.1"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=1.1"></script>
+
+  </body>
+</html>

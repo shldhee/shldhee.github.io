@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang>
+  <head><meta name="generator" content="Hexo 3.9.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
+<link rel="canonical" href="https://hasudoki.tistory.com/">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="description" content="Algorithm - getMinSum(Level2)">
+
+
+
+
+  <meta name="keywords" content="Algorithm,Javascript,JS,">
+
+
+
+
+
+  <link rel="alternate" href="/feed.xml" title="힘내서 공부해보자">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.png?v=1.1">
+
+
+
+<link rel="canonical" href="https://shldhee.github.io/2017/08/11/algo-4/">
+
+
+<meta name="description" content="네 번째 알고리즘문제 설명최솟값 만들기자연수로 이루어진 길이가 같은 수열 A,B가 있습니다. 최솟값 만들기는 A, B에서 각각 한 개의 숫자를 뽑아 두 수를 곱한 값을 누적하여 더합니다. 이러한 과정을 수열의 길이만큼 반복하여 최종적으로 누적된 값이 최소가 되도록 만드는 것이 목표입니다. 예를 들어 A = [1, 2] , B = [3, 4] 라면  A에서">
+<meta name="keywords" content="Algorithm,Javascript,JS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Algorithm - getMinSum(Level2)">
+<meta property="og:url" content="https://shldhee.github.io/2017/08/11/algo-4/index.html">
+<meta property="og:site_name" content="힘내서 공부해보자">
+<meta property="og:description" content="네 번째 알고리즘문제 설명최솟값 만들기자연수로 이루어진 길이가 같은 수열 A,B가 있습니다. 최솟값 만들기는 A, B에서 각각 한 개의 숫자를 뽑아 두 수를 곱한 값을 누적하여 더합니다. 이러한 과정을 수열의 길이만큼 반복하여 최종적으로 누적된 값이 최소가 되도록 만드는 것이 목표입니다. 예를 들어 A = [1, 2] , B = [3, 4] 라면  A에서">
+<meta property="og:locale" content="en-En">
+<meta property="og:updated_time" content="2020-07-23T08:31:33.044Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Algorithm - getMinSum(Level2)">
+<meta name="twitter:description" content="네 번째 알고리즘문제 설명최솟값 만들기자연수로 이루어진 길이가 같은 수열 A,B가 있습니다. 최솟값 만들기는 A, B에서 각각 한 개의 숫자를 뽑아 두 수를 곱한 값을 누적하여 더합니다. 이러한 과정을 수열의 길이만큼 반복하여 최종적으로 누적된 값이 최소가 되도록 만드는 것이 목표입니다. 예를 들어 A = [1, 2] , B = [3, 4] 라면  A에서">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+
+
+
+
+<script type="text/javascript">
+  var themeConfig = {
+    fancybox: {
+      enable: false
+    },
+  };
+</script>
+
+
+
+
+  
+
+  <script type="text/javascript">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-103254205-1', 'auto');
+        ga('send', 'pageview');
+  </script>
+
+
+
+    <title> Algorithm - getMinSum(Level2) - 힘내서 공부해보자 </title>
+  </head>
+
+  <body>
+    <div id="page">
+      <header id="masthead"><div class="site-header-inner">
+    <h1 class="site-title">
+        <a href="/." class="logo">힘내서 공부해보자</a>
+    </h1>
+
+    <nav id="nav-top">
+        
+            <ul id="menu-top" class="nav-top-items">
+                
+                    <li class="menu-item">
+                        <a href="/archives">
+                            
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        
+  </nav>
+</div>
+
+      </header>
+      <div id="content">
+        
+    <div id="primary">
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          Algorithm - getMinSum(Level2)
+        
+      </h1>
+
+      <time class="post-time">
+          Aug 11 2017
+      </time>
+    </header>
+
+
+
+    
+            <div class="post-content">
+            <h1 id="네-번째-알고리즘"><a href="#네-번째-알고리즘" class="headerlink" title="네 번째 알고리즘"></a>네 번째 알고리즘</h1><h2 id="문제-설명"><a href="#문제-설명" class="headerlink" title="문제 설명"></a>문제 설명</h2><p>최솟값 만들기<br>자연수로 이루어진 길이가 같은 수열 A,B가 있습니다. 최솟값 만들기는 A, B에서 각각 한 개의 숫자를 뽑아 두 수를 곱한 값을 누적하여 더합니다. 이러한 과정을 수열의 길이만큼 반복하여 최종적으로 누적된 값이 최소가 되도록 만드는 것이 목표입니다.</p>
+<p>예를 들어 A = [1, 2] , B = [3, 4] 라면</p>
+<ol>
+<li>A에서 1, B에서 4를 뽑아 곱하여 더합니다.</li>
+<li>A에서 2, B에서 3을 뽑아 곱하여 더합니다.</li>
+</ol>
+<p>수열의 길이만큼 반복하여 최솟값 10을 얻을 수 있으며, 이 10이 최솟값이 됩니다.<br>수열 A,B가 주어질 때, 최솟값을 반환해주는 getMinSum 함수를 완성하세요.</p>
+<h3 id="내-답안"><a href="#내-답안" class="headerlink" title="내 답안"></a>내 답안</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getMinSum</span>(<span class="params">A,B</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> answer = <span class="number">0</span>;</span><br><span class="line">  A.sort(<span class="function">(<span class="params">a,b</span>) =&gt;</span> a-b);</span><br><span class="line">  B.sort(<span class="function">(<span class="params">a,b</span>) =&gt;</span> b-a);</span><br><span class="line">  answer = A.map( <span class="function">(<span class="params">v,i</span>) =&gt;</span> v * B[i]).reduce(<span class="function">(<span class="params">p, c</span>) =&gt;</span> p+c);</span><br><span class="line">  <span class="keyword">return</span> answer;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//아래 코드는 테스트를 위한 출력 코드 입니다.</span></span><br><span class="line"><span class="keyword">var</span> tA = [<span class="number">1</span>,<span class="number">2</span>],</span><br><span class="line">    tB = [<span class="number">3</span>,<span class="number">4</span>];</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(getMinSum(tA,tB));</span><br></pre></td></tr></table></figure>
+
+<h3 id="다른-사람-답안"><a href="#다른-사람-답안" class="headerlink" title="다른 사람 답안"></a>다른 사람 답안</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getMinSum</span>(<span class="params">A,B</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> answer = [];</span><br><span class="line"></span><br><span class="line">  B.reverse();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;A.length;i++)&#123;</span><br><span class="line">        answer.push(A[i]*B[i]);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  answer = answer.reduce(func_answer,<span class="number">0</span>);</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">func_answer</span>(<span class="params">a,b</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a+b;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> answer;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//아래 코드는 테스트를 위한 출력 코드 입니다.</span></span><br><span class="line"><span class="keyword">var</span> tA = [<span class="number">1</span>,<span class="number">2</span>],</span><br><span class="line">    tB = [<span class="number">3</span>,<span class="number">4</span>];</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(getMinSum(tA,tB));</span><br></pre></td></tr></table></figure>
+
+<h3 id="공부할-점"><a href="#공부할-점" class="headerlink" title="공부할 점"></a>공부할 점</h3><h4 id="1-sort"><a href="#1-sort" class="headerlink" title="1. sort"></a>1. sort</h4><ul>
+<li>a-b 오름차순 b-a 내림차순</li>
+</ul>
+<h4 id="2-reduce-공부"><a href="#2-reduce-공부" class="headerlink" title="2. reduce 공부"></a>2. reduce 공부</h4><h4 id="3-reverse"><a href="#3-reverse" class="headerlink" title="3. reverse"></a>3. reverse</h4>
+            </div>
+          
+
+    
+      <footer class="post-footer">
+		
+		<div class="post-tags">
+		  
+			<a href="/tags/Algorithm/">Algorithm</a>
+		  
+			<a href="/tags/Javascript/">Javascript</a>
+		  
+			<a href="/tags/JS/">JS</a>
+		  
+		</div>
+		
+
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2017/09/29/javascript-var/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">JavaScript - var</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    
+    
+      <a class="next" href="/2017/07/31/algo-3/">
+        <span class="next-text nav-default">Algorithm - getDayName(Level2)</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+        
+  <div class="comments" id="comments">
+    
+    <div style="text-align:center;">
+        <button class="btn" id="load-disqus" onclick="disqus.load();">Disqus 댓글 보기</button>
+    </div>
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+      </footer>
+    
+  </article>
+
+    </div>
+
+      </div>
+
+      <footer id="colophon"><span class="copyright-year">
+    
+        &copy;
+    
+        2017 -
+    
+    2020
+    <span class="footer-author">ddoka.</span>
+    <span class="power-by">
+        Powered by <a class="hexo-link" href="https://hexo.io/" rel="external nofollow noopener noreferrer" target="_blank">Hexo</a> and <a class="theme-link" href="https://github.com/frostfan/hexo-theme-polarbear" rel="external nofollow noopener noreferrer" target="_blank">Polar Bear</a>
+    </span>
+</span>
+
+  <script src="https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js"></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+    
+
+<script type="text/javascript">
+  var disqus_shortname = 'shldhee';
+  var disqus_identifier = '2017/08/11/algo-4/';
+
+  var disqus_title = "Algorithm - getMinSum(Level2)";
+
+
+  var disqus = {
+    load : function disqus(){
+        if(typeof DISQUS !== 'object') {
+          (function () {
+          var s = document.createElement('script'); s.async = true;
+          s.type = 'text/javascript';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+          }());
+          $('#load-disqus').remove(); ///加载后移除按钮
+        }
+    }
+  }
+
+  
+    var disqus_config = function () {
+        this.page.url = disqus_url;
+        this.page.identifier = disqus_identifier;
+        this.page.title = disqus_title;
+    };
+  
+
+</script>
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+
+    <script type="text/javascript" src="/js/src/theme.js?v=1.1"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=1.1"></script>
+
+  </body>
+</html>

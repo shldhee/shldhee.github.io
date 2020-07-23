@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang>
+  <head><meta name="generator" content="Hexo 3.9.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
+<link rel="canonical" href="https://hasudoki.tistory.com/">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="description" content="JavaScript - DOM이란?">
+
+
+
+
+  <meta name="keywords" content="javascript,DOM,browser,">
+
+
+
+
+
+  <link rel="alternate" href="/feed.xml" title="힘내서 공부해보자">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.png?v=1.1">
+
+
+
+<link rel="canonical" href="https://shldhee.github.io/2018/04/08/DOM/">
+
+
+<meta name="description" content="DOM 이란 뭘까? HTML 태그? JavaScript로 접근 하는 것? Node? 트리구조? 등등 용어만 들었을뿐 정확히 설명을 못했다.(이것뿐만 아니라 공부한 모든것들을 설명할 수가 없어 차근차근 정리해볼 계획이다.)  DOM 정의(MDN 참조) 문서 객체 모델(Document Object Model)은 JavaScript Node 개체의 계층화된 트">
+<meta name="keywords" content="javascript,DOM,browser">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript - DOM이란?">
+<meta property="og:url" content="https://shldhee.github.io/2018/04/08/DOM/index.html">
+<meta property="og:site_name" content="힘내서 공부해보자">
+<meta property="og:description" content="DOM 이란 뭘까? HTML 태그? JavaScript로 접근 하는 것? Node? 트리구조? 등등 용어만 들었을뿐 정확히 설명을 못했다.(이것뿐만 아니라 공부한 모든것들을 설명할 수가 없어 차근차근 정리해볼 계획이다.)  DOM 정의(MDN 참조) 문서 객체 모델(Document Object Model)은 JavaScript Node 개체의 계층화된 트">
+<meta property="og:locale" content="en-En">
+<meta property="og:image" content="https://raw.githubusercontent.com/shldhee/shldhee.github.io/master/images/JavaScript/dom-1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/shldhee/shldhee.github.io/master/images/JavaScript/dom-2.jpg">
+<meta property="og:updated_time" content="2020-07-23T08:31:33.043Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript - DOM이란?">
+<meta name="twitter:description" content="DOM 이란 뭘까? HTML 태그? JavaScript로 접근 하는 것? Node? 트리구조? 등등 용어만 들었을뿐 정확히 설명을 못했다.(이것뿐만 아니라 공부한 모든것들을 설명할 수가 없어 차근차근 정리해볼 계획이다.)  DOM 정의(MDN 참조) 문서 객체 모델(Document Object Model)은 JavaScript Node 개체의 계층화된 트">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/shldhee/shldhee.github.io/master/images/JavaScript/dom-1.png">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+
+
+
+
+<script type="text/javascript">
+  var themeConfig = {
+    fancybox: {
+      enable: false
+    },
+  };
+</script>
+
+
+
+
+  
+
+  <script type="text/javascript">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-103254205-1', 'auto');
+        ga('send', 'pageview');
+  </script>
+
+
+
+    <title> JavaScript - DOM이란? - 힘내서 공부해보자 </title>
+  </head>
+
+  <body>
+    <div id="page">
+      <header id="masthead"><div class="site-header-inner">
+    <h1 class="site-title">
+        <a href="/." class="logo">힘내서 공부해보자</a>
+    </h1>
+
+    <nav id="nav-top">
+        
+            <ul id="menu-top" class="nav-top-items">
+                
+                    <li class="menu-item">
+                        <a href="/archives">
+                            
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        
+  </nav>
+</div>
+
+      </header>
+      <div id="content">
+        
+    <div id="primary">
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          JavaScript - DOM이란?
+        
+      </h1>
+
+      <time class="post-time">
+          Apr 08 2018
+      </time>
+    </header>
+
+
+
+    
+            <div class="post-content">
+            <ul>
+<li>DOM 이란 뭘까? HTML 태그? JavaScript로 접근 하는 것? Node? 트리구조? 등등 용어만 들었을뿐 정확히 설명을 못했다.(이것뿐만 아니라 공부한 모든것들을 설명할 수가 없어 차근차근 정리해볼 계획이다.)</li>
+</ul>
+<h2 id="DOM-정의-MDN-참조"><a href="#DOM-정의-MDN-참조" class="headerlink" title="DOM 정의(MDN 참조)"></a>DOM 정의(MDN 참조)</h2><ul>
+<li>문서 객체 모델(Document Object Model)은 JavaScript Node 개체의 계층화된 트리다.</li>
+<li>DOM은 HTML, XML 문서의 프로그래밍 API이다.</li>
+<li>문서의 구조화된 표현을 제공하며 프로그래밍 언어가 DOM 구조에 접근할 수 있는 방법을 제공한다.</li>
+<li>문서 구조, 스타일, 내용 등을 변경할 수 있게 돕는다.</li>
+</ul>
+<h2 id="DOM이-뭘까"><a href="#DOM이-뭘까" class="headerlink" title="DOM이 뭘까?"></a>DOM이 뭘까?</h2><ul>
+<li>HTML 파일이 쓴 것들이 DOM인가? No</li>
+<li>소스보기에 보여지는 것들이 DOM인가? No</li>
+<li>크롬 개발자 도구에서 보여주는 것들이 DOM인가? Yes</li>
+<li>개발자도구나 HTML 파일이나 같은데…..? <strong>하지만 종종 다른 경우가 있다.</strong></li>
+</ul>
+<h3 id="HTML과-DOM이-다른-점이-뭘까"><a href="#HTML과-DOM이-다른-점이-뭘까" class="headerlink" title="HTML과 DOM이 다른 점이 뭘까?"></a>HTML과 DOM이 다른 점이 뭘까?</h3><ul>
+<li>HTML 작성할때 실수(필요한 TAG를 생략 한 경우 등)를  브라우저가 고쳐준다.</li>
+<li>예를 들면 HTML 작성시 <code>&lt;table&gt;</code> 안에 <code>&lt;tbody&gt;</code>없이 <code>&lt;tr&gt;,&lt;th&gt;</code>를 사용한 경우 개발자 도구를 보면 <code>&lt;tbody&gt;</code>가 존재한다.</li>
+<li><code>&lt;tbody&gt;</code>는 바로 DOM에 있을것 이다.</li>
+<li>따라서 CSS, JavaScript으로 찾을 수 있고 스타일을 변경하거나 조작이 가능하다.</li>
+</ul>
+<p><a href="https://raw.githubusercontent.com/shldhee/shldhee.github.io/master/images/JavaScript/dom-1.png" rel="external nofollow noopener noreferrer" target="_blank"><img title="big size image" src="https://raw.githubusercontent.com/shldhee/shldhee.github.io/master/images/JavaScript/dom-1.png"></a></p>
+<h3 id="JavaScript-vs-DOM"><a href="#JavaScript-vs-DOM" class="headerlink" title="JavaScript vs DOM"></a>JavaScript vs DOM</h3><ul>
+<li>JavaScript는 브라우저가 읽고 사용하는 언어입니다.</li>
+<li>하지만 DOM은 그 일이 일어나는 곳입니다.</li>
+<li>사실은 JavaScript의 것라고 생각하는 것들이 정확히는 <strong>DOM API</strong>이다.</li>
+<li>예를 들면, element에 있는 mouseenter event를 확인하기 위해 JavaScript를 사용한다.</li>
+<li>element는 사실 DOM node이다. DOM node의 DOM 속성을 통해 해당 event listener를 연결합니다.</li>
+<li>event가 발생할때 DOM node는 event를 내보낸다(발생시킨다).<ul>
+<li>node란 어떤 객체의 구성 요소를 의미한다.</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/shldhee/shldhee.github.io/master/images/JavaScript/dom-2.jpg" alt="dom-2"></p>
+<h3 id="결론"><a href="#결론" class="headerlink" title="결론"></a>결론</h3><ul>
+<li>JavaScript는 문법, 언어이며 DOM API가 없는 브라우저 밖에서 완전히 사용이 가능하다.(Node.js)</li>
+<li>DOM은 브라우저내에서 작동하고 존재한다.</li>
+<li>DOM은 파싱 된 HTML이라고 말할 수 있습니다.</li>
+<li>웹페이지가 로드되면 브라우저는 DOM 페이지을 만든다.</li>
+<li>내 생각으로는 브라우저내에 DOM이 존재하고 HTML 문서를 해석한 다음 생성되는 것이 DOM이다. 한줄로 정의하고 싶은데 쉽지 않다.</li>
+</ul>
+<p><strong>참조</strong></p>
+<ul>
+<li><a href="https://css-tricks.com/dom/" rel="external nofollow noopener noreferrer" target="_blank">CSS-Trick:What is the DOM?</a></li>
+</ul>
+
+            </div>
+          
+
+    
+      <footer class="post-footer">
+		
+		<div class="post-tags">
+		  
+			<a href="/tags/javascript/">javascript</a>
+		  
+			<a href="/tags/DOM/">DOM</a>
+		  
+			<a href="/tags/browser/">browser</a>
+		  
+		</div>
+		
+
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2019/01/04/Review-NewCSS/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">리뷰 겸 정리-새로운 CSS 레이아웃(The New CSS Layout)</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    
+    
+      <a class="next" href="/2018/04/02/react-router/">
+        <span class="next-text nav-default">React - React-Router</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+        
+  <div class="comments" id="comments">
+    
+    <div style="text-align:center;">
+        <button class="btn" id="load-disqus" onclick="disqus.load();">Disqus 댓글 보기</button>
+    </div>
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+      </footer>
+    
+  </article>
+
+    </div>
+
+      </div>
+
+      <footer id="colophon"><span class="copyright-year">
+    
+        &copy;
+    
+        2017 -
+    
+    2020
+    <span class="footer-author">ddoka.</span>
+    <span class="power-by">
+        Powered by <a class="hexo-link" href="https://hexo.io/" rel="external nofollow noopener noreferrer" target="_blank">Hexo</a> and <a class="theme-link" href="https://github.com/frostfan/hexo-theme-polarbear" rel="external nofollow noopener noreferrer" target="_blank">Polar Bear</a>
+    </span>
+</span>
+
+  <script src="https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js"></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+    
+
+<script type="text/javascript">
+  var disqus_shortname = 'shldhee';
+  var disqus_identifier = '2018/04/08/DOM/';
+
+  var disqus_title = "JavaScript - DOM이란?";
+
+
+  var disqus = {
+    load : function disqus(){
+        if(typeof DISQUS !== 'object') {
+          (function () {
+          var s = document.createElement('script'); s.async = true;
+          s.type = 'text/javascript';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+          }());
+          $('#load-disqus').remove(); ///加载后移除按钮
+        }
+    }
+  }
+
+  
+    var disqus_config = function () {
+        this.page.url = disqus_url;
+        this.page.identifier = disqus_identifier;
+        this.page.title = disqus_title;
+    };
+  
+
+</script>
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+
+    <script type="text/javascript" src="/js/src/theme.js?v=1.1"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=1.1"></script>
+
+  </body>
+</html>

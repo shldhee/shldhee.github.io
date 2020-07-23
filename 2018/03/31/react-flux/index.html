@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang>
+  <head><meta name="generator" content="Hexo 3.9.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
+<link rel="canonical" href="https://hasudoki.tistory.com/">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="description" content="React - FLUX">
+
+
+
+
+  <meta name="keywords" content="javascript,react,flux,">
+
+
+
+
+
+  <link rel="alternate" href="/feed.xml" title="힘내서 공부해보자">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.png?v=1.1">
+
+
+
+<link rel="canonical" href="https://shldhee.github.io/2018/03/31/react-flux/">
+
+
+<meta name="description" content="FLUX의 정보 전달 흐름 Action : 어떤 기능을 실행 시작한다. 실제 처리는 하지 않는다. Dispatcher에게 넘긴다. Dispatcher : Action으로 받은 것을 Store에게 전달 한다. Store : 애플리케이션의 상태를 기록한다. 상태가 변경될 때마다 화면 출력에 반영한다. Store 변화시 렌더링을 위해 View가 실행 된다. V">
+<meta name="keywords" content="javascript,react,flux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React - FLUX">
+<meta property="og:url" content="https://shldhee.github.io/2018/03/31/react-flux/index.html">
+<meta property="og:site_name" content="힘내서 공부해보자">
+<meta property="og:description" content="FLUX의 정보 전달 흐름 Action : 어떤 기능을 실행 시작한다. 실제 처리는 하지 않는다. Dispatcher에게 넘긴다. Dispatcher : Action으로 받은 것을 Store에게 전달 한다. Store : 애플리케이션의 상태를 기록한다. 상태가 변경될 때마다 화면 출력에 반영한다. Store 변화시 렌더링을 위해 View가 실행 된다. V">
+<meta property="og:locale" content="en-En">
+<meta property="og:updated_time" content="2020-07-23T08:31:33.045Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="React - FLUX">
+<meta name="twitter:description" content="FLUX의 정보 전달 흐름 Action : 어떤 기능을 실행 시작한다. 실제 처리는 하지 않는다. Dispatcher에게 넘긴다. Dispatcher : Action으로 받은 것을 Store에게 전달 한다. Store : 애플리케이션의 상태를 기록한다. 상태가 변경될 때마다 화면 출력에 반영한다. Store 변화시 렌더링을 위해 View가 실행 된다. V">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+
+
+
+
+<script type="text/javascript">
+  var themeConfig = {
+    fancybox: {
+      enable: false
+    },
+  };
+</script>
+
+
+
+
+  
+
+  <script type="text/javascript">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-103254205-1', 'auto');
+        ga('send', 'pageview');
+  </script>
+
+
+
+    <title> React - FLUX - 힘내서 공부해보자 </title>
+  </head>
+
+  <body>
+    <div id="page">
+      <header id="masthead"><div class="site-header-inner">
+    <h1 class="site-title">
+        <a href="/." class="logo">힘내서 공부해보자</a>
+    </h1>
+
+    <nav id="nav-top">
+        
+            <ul id="menu-top" class="nav-top-items">
+                
+                    <li class="menu-item">
+                        <a href="/archives">
+                            
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        
+  </nav>
+</div>
+
+      </header>
+      <div id="content">
+        
+    <div id="primary">
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          React - FLUX
+        
+      </h1>
+
+      <time class="post-time">
+          Mar 31 2018
+      </time>
+    </header>
+
+
+
+    
+            <div class="post-content">
+            <ul>
+<li>FLUX의 정보 전달 흐름</li>
+<li>Action : 어떤 기능을 실행 시작한다. 실제 처리는 하지 않는다. Dispatcher에게 넘긴다.</li>
+<li>Dispatcher : Action으로 받은 것을 Store에게 전달 한다.</li>
+<li>Store : 애플리케이션의 상태를 기록한다. 상태가 변경될 때마다 화면 출력에 반영한다. Store 변화시 렌더링을 위해 View가 실행 된다.</li>
+<li>View : Store로 인해 상태가 변경될 때 화면의 출력을 변경합니다. Flux는 View에 리액트를 사용한다.</li>
+<li>FLUX 사용 이유는 복잡한 애플리케이션을 만들 때는 무엇이 어디서 일어나는지 파악하기 힘들다. 하지만 FLUX를 사용하면 어떤 파일에서 어떤 처리가 이뤄지는지 쉽게 파악할 수 있다.</li>
+<li>따라서 공동 개발때 큰 효과를 발휘하고, 어떤 코드가 사용되는지 쉽게 파악되고, 버그도 줄일 수 있다.</li>
+</ul>
+<pre class="mermaid">graph LR
+A[Action] --> B[Dispatcher]
+B --> C[Store]
+C --> D[View]
+D --> A</pre>
+
+<h2 id="FLUX-예제"><a href="#FLUX-예제" class="headerlink" title="FLUX 예제"></a>FLUX 예제</h2><ul>
+<li>이름 쓰고 등록 누르면 이름과 메세지가 나온다.</li>
+<li>2가지 Action이 있다. 이름을 수정할때 실행되는 <code>CHANGE_NAME</code>, 등록 버튼 누를때 <code>SUBMIT_NAME</code></li>
+<li>Action이 발생하면 Dispatcher는 액션 실행 사실을 Store에 전달한다.</li>
+<li>Store는 이름과, 메세지를 변경하면 View에 전달된다. 그럼 화면에 적용 짜잔!!!</li>
+</ul>
+<p><em>파일 구조</em></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">actions.js</span><br><span class="line">appDispatcher.js</span><br><span class="line">index.js</span><br><span class="line">stores.js</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Store, Action부터 생각하자.</li>
+<li>이름 입력하는 예제이므로 이름과, 이름이 변경할 때 발생할 액션이 필요하다.</li>
+<li>이름 데이터 : <code>nameStore</code>, 이름 변경 액션 <code>CHANGE_NAME</code></li>
+<li>등록 버튼을 눌러 인사 메시지를 출력한다.</li>
+<li>메시지 저장 데이터 : <code>messageStore</code>, 등록 버튼 액션 <code>SUBMIT_NAME</code></li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 사용할 Store</span></span><br><span class="line"><span class="keyword">const</span> nameStore = &#123; <span class="attr">name</span>: <span class="string">''</span>, <span class="attr">onChange</span>: <span class="literal">null</span> &#125;</span><br><span class="line"><span class="keyword">const</span> messageStore = &#123; <span class="attr">message</span>: <span class="string">''</span>, <span class="attr">onChange</span>: <span class="literal">null</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 사용할 Action</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> ActionType = &#123;</span><br><span class="line">	CHANGE_NAME = <span class="string">'CHANGE_NAME'</span>,</span><br><span class="line">	SUBMIT_NAME = <span class="string">'SUBMIT_NAME'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>아래 그림들은 현재까지 설명한 부분들이다.</li>
+</ul>
+<pre class="mermaid">graph LR
+A[Action:<br>CHANGE_NAME] --> B[Dispatcher]
+B --> C[Store<br>nameStore]
+C --> D[View<br>AppView<br>Change name]
+D --> A</pre>
+
+<pre class="mermaid">graph LR
+A[Action:<br>SUBMIT_NAME] --> B[Dispatcher]
+B --> C[Store<br>messageStore]
+C --> D[View<br>AppView<br>Submit button]
+D --> A</pre>
+
+<ul>
+<li>Dispatcher 정의</li>
+<li><code>npm install --save flux</code></li>
+<li>페이스북에서 제공하는 <code>Dispathcer</code> 클래스의 인스턴스를 생성하는 것이 끝</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Dispatcher &#125; <span class="keyword">from</span> <span class="string">'flux'</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> appDispatcher = <span class="keyword">new</span> Dispatcher();</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Store 정의</li>
+<li>사용할 <code>Store</code>를 생성한다.</li>
+<li><code>Action</code>과 <code>Store</code>를 연결할 수 있게 <code>Dispathcer</code>에 콜백 함수를 등록한다.</li>
+<li><code>register</code> 메서드는 Dispathcer에서 <code>dispatch</code>메서드를 실행할때 <code>register</code>에 등록한 콜백함수들이 실행된다.</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; appDispatcher &#125; <span class="keyword">from</span> <span class="string">'./appDispatcher'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; ActionType &#125; <span class="keyword">from</span> <span class="string">'./actions'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 사용할 Store</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> nameStore = &#123; <span class="attr">name</span>: <span class="string">''</span>, <span class="attr">onChange</span>: <span class="literal">null</span> &#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> messageStore = &#123; <span class="attr">message</span>: <span class="string">''</span>, <span class="attr">onChange</span>: <span class="literal">null</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Action과 Store 연결, Dispathcer에 콜백 함수 등록</span></span><br><span class="line">appDispatcher.register(<span class="function"><span class="params">payload</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (payload.actionType === ActionType.CHANGE_NAME) &#123;</span><br><span class="line">    nameStore.name = payload.value;</span><br><span class="line">    nameStore.onChange();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">appDispatcher.register(<span class="function"><span class="params">payload</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span>(payload.actionType === ActionType.SUBMIT_NAME) &#123;</span><br><span class="line">    messageStore.message = nameStore.name + <span class="string">'님 안녕하세요.'</span>;</span><br><span class="line">    messageStore.onChange();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Action 정의</li>
+<li><code>ActionType</code> 정의하기</li>
+<li>정의한 <code>ActionType</code>을 <code>Dispatcher</code>에 전달하기 위한 메서드 정의하기</li>
+<li>Store 정의 부분에서 언급한 <code>disptach</code>메서드가 샐행되어 <code>register</code>에 등록된 콜백 함수를 모두 실행한다.</li>
+<li>이때 <code>dispatch</code>에 지정한 매개변수가 전달된다.(<code>{ actionType, value }</code>)</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;appDispatcher&#125; <span class="keyword">from</span> <span class="string">'./appDispatcher'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> ActionType = &#123;</span><br><span class="line">  CHANGE_NAME : <span class="string">'CHANGE_NAME'</span>,</span><br><span class="line">  SUBMIT_NAME : <span class="string">'SUBMIT_NAME'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Actions을 생성하고 ... Dispatcher에 정보를 전달합니다.</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> Actions = &#123;</span><br><span class="line">  changeName: <span class="function"><span class="params">name</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (name === <span class="literal">null</span>) <span class="keyword">return</span></span><br><span class="line">    appDispatcher.dispatch(&#123;</span><br><span class="line">      actionType: ActionType.CHANGE_NAME,</span><br><span class="line">      value: name</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;,</span><br><span class="line">  submitName: <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    appDispatcher.dispatch(&#123;</span><br><span class="line">      actionType: ActionType.SUBMIT_NAME</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>View 정의</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> ReactDOM <span class="keyword">from</span> <span class="string">'react-dom'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Actions &#125; <span class="keyword">from</span> <span class="string">'./actions'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; nameStore, messageStore &#125; <span class="keyword">from</span> <span class="string">'./stores'</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AppView</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span> (props) &#123;</span><br><span class="line">    <span class="keyword">super</span>(props);</span><br><span class="line">    <span class="keyword">this</span>.state = &#123; <span class="attr">name</span>: <span class="string">''</span>, <span class="attr">message</span>: <span class="string">''</span> &#125;</span><br><span class="line">    nameStore.onChange = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">this</span>.setState(&#123;<span class="attr">name</span>: nameStore.name&#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    messageStore.onChange = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">this</span>.setState(&#123;<span class="attr">message</span>: messageStore.message&#125;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render () &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'View.render'</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">          &lt;input</span><br><span class="line">            value=&#123;<span class="keyword">this</span>.state.name&#125;</span><br><span class="line">            onChange=&#123;e =&gt; Actions.changeName(e.target.value)&#125; /&gt;</span><br><span class="line">          &lt;button onClick=&#123;() =&gt; Actions.submitName()&#125;&gt;등록&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">        &lt;/</span>div&gt;</span><br><span class="line">        &lt;div&gt;&#123;<span class="keyword">this</span>.state.message&#125;&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">      &lt;/</span>div&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(<span class="xml"><span class="tag">&lt;<span class="name">AppView</span> /&gt;</span>, document.getElementById('root'));</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="CHANGE-NAME-액션-타입-실행-순서"><a href="#CHANGE-NAME-액션-타입-실행-순서" class="headerlink" title="CHANGE_NAME 액션 타입 실행 순서"></a>CHANGE_NAME 액션 타입 실행 순서</h3><ol>
+<li><p>이름 변경할때 action 발생</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;input</span><br><span class="line">  value=&#123;<span class="keyword">this</span>.state.name&#125;</span><br><span class="line">  onChange=&#123;e =&gt; Actions.changeName(e.target.value)&#125; /&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>actions.js 에서 ActionType을 Disptacher(<code>dispatch</code>메서드 실행)에 전달</p>
+</li>
+<li><p><code>dispatch</code>메서드를 실행하면 store.js에 <code>register</code>메서드가 모두 실행된다.</p>
+</li>
+<li><p><code>dispatch</code>의 인자값을 <code>payload</code>로 받아 <code>payload.actionType</code>에 맞는 부분을 실행하여 상태를 변경한다.</p>
+</li>
+<li><p><code>nameStore.onChange()</code>를 통해 <code>setState</code>가 실행되어 View가 렌더링된다.</p>
+</li>
+</ol>
+<h2 id="결론"><a href="#결론" class="headerlink" title="결론"></a>결론</h2><ul>
+<li>FLUX를 이용하면 프로그램을 간략하게 유지할 수 있다.</li>
+<li>FLUX에서는 Action -&gt; Dispatcher -&gt; Store -&gt; View처럼 정보가 한 방향으로 흐릅니다.</li>
+<li>FLUX를 이용해 프로그램을 만들 때는 각 처리가 각각의 역할을 넘지 않게 구현해주세요.</li>
+</ul>
+
+            </div>
+          
+
+    
+      <footer class="post-footer">
+		
+		<div class="post-tags">
+		  
+			<a href="/tags/javascript/">javascript</a>
+		  
+			<a href="/tags/react/">react</a>
+		  
+			<a href="/tags/flux/">flux</a>
+		  
+		</div>
+		
+
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2018/04/02/react-router/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">React - React-Router</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    
+    
+      <a class="next" href="/2018/03/30/http-1/">
+        <span class="next-text nav-default">Network - HTTP의 이해</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+        
+  <div class="comments" id="comments">
+    
+    <div style="text-align:center;">
+        <button class="btn" id="load-disqus" onclick="disqus.load();">Disqus 댓글 보기</button>
+    </div>
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+      </footer>
+    
+  </article>
+
+    </div>
+
+      </div>
+
+      <footer id="colophon"><span class="copyright-year">
+    
+        &copy;
+    
+        2017 -
+    
+    2020
+    <span class="footer-author">ddoka.</span>
+    <span class="power-by">
+        Powered by <a class="hexo-link" href="https://hexo.io/" rel="external nofollow noopener noreferrer" target="_blank">Hexo</a> and <a class="theme-link" href="https://github.com/frostfan/hexo-theme-polarbear" rel="external nofollow noopener noreferrer" target="_blank">Polar Bear</a>
+    </span>
+</span>
+
+  <script src="https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js"></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+    
+
+<script type="text/javascript">
+  var disqus_shortname = 'shldhee';
+  var disqus_identifier = '2018/03/31/react-flux/';
+
+  var disqus_title = "React - FLUX";
+
+
+  var disqus = {
+    load : function disqus(){
+        if(typeof DISQUS !== 'object') {
+          (function () {
+          var s = document.createElement('script'); s.async = true;
+          s.type = 'text/javascript';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+          }());
+          $('#load-disqus').remove(); ///加载后移除按钮
+        }
+    }
+  }
+
+  
+    var disqus_config = function () {
+        this.page.url = disqus_url;
+        this.page.identifier = disqus_identifier;
+        this.page.title = disqus_title;
+    };
+  
+
+</script>
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+
+    <script type="text/javascript" src="/js/src/theme.js?v=1.1"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=1.1"></script>
+
+  </body>
+</html>

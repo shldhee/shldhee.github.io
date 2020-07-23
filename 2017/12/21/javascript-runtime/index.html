@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang>
+  <head><meta name="generator" content="Hexo 3.9.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
+<link rel="canonical" href="https://hasudoki.tistory.com/">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="description" content="JavaScript - Runtime">
+
+
+
+
+  <meta name="keywords" content="javascript,eventloop,setTimeout,v8,">
+
+
+
+
+
+  <link rel="alternate" href="/feed.xml" title="힘내서 공부해보자">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.png?v=1.1">
+
+
+
+<link rel="canonical" href="https://shldhee.github.io/2017/12/21/javascript-runtime/">
+
+
+<meta name="description" content="자바스크립트는 어떻게 작동하는가: 엔진, 런타임, 콜스택 자바스크립트가 단일 쓰레드(Single-threaded)이고 콜백 큐(callback queue) 이용 자바스크립트 엔진은 구글의 V8엔진입니다. V8엔진은 크롬과 노드js에서 사용됩니다.  V8엔진은 두 부분으로 구성됩니다. 메모리힙(Memory Heap): 메모리할당이 이루어지는 곳 콜스택(Cal">
+<meta name="keywords" content="javascript,eventloop,setTimeout,v8">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript - Runtime">
+<meta property="og:url" content="https://shldhee.github.io/2017/12/21/javascript-runtime/index.html">
+<meta property="og:site_name" content="힘내서 공부해보자">
+<meta property="og:description" content="자바스크립트는 어떻게 작동하는가: 엔진, 런타임, 콜스택 자바스크립트가 단일 쓰레드(Single-threaded)이고 콜백 큐(callback queue) 이용 자바스크립트 엔진은 구글의 V8엔진입니다. V8엔진은 크롬과 노드js에서 사용됩니다.  V8엔진은 두 부분으로 구성됩니다. 메모리힙(Memory Heap): 메모리할당이 이루어지는 곳 콜스택(Cal">
+<meta property="og:locale" content="en-En">
+<meta property="og:updated_time" content="2020-07-23T08:31:33.045Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript - Runtime">
+<meta name="twitter:description" content="자바스크립트는 어떻게 작동하는가: 엔진, 런타임, 콜스택 자바스크립트가 단일 쓰레드(Single-threaded)이고 콜백 큐(callback queue) 이용 자바스크립트 엔진은 구글의 V8엔진입니다. V8엔진은 크롬과 노드js에서 사용됩니다.  V8엔진은 두 부분으로 구성됩니다. 메모리힙(Memory Heap): 메모리할당이 이루어지는 곳 콜스택(Cal">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+
+
+
+
+<script type="text/javascript">
+  var themeConfig = {
+    fancybox: {
+      enable: false
+    },
+  };
+</script>
+
+
+
+
+  
+
+  <script type="text/javascript">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-103254205-1', 'auto');
+        ga('send', 'pageview');
+  </script>
+
+
+
+    <title> JavaScript - Runtime - 힘내서 공부해보자 </title>
+  </head>
+
+  <body>
+    <div id="page">
+      <header id="masthead"><div class="site-header-inner">
+    <h1 class="site-title">
+        <a href="/." class="logo">힘내서 공부해보자</a>
+    </h1>
+
+    <nav id="nav-top">
+        
+            <ul id="menu-top" class="nav-top-items">
+                
+                    <li class="menu-item">
+                        <a href="/archives">
+                            
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        
+  </nav>
+</div>
+
+      </header>
+      <div id="content">
+        
+    <div id="primary">
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          JavaScript - Runtime
+        
+      </h1>
+
+      <time class="post-time">
+          Dec 21 2017
+      </time>
+    </header>
+
+
+
+    
+            <div class="post-content">
+            <h2 id="자바스크립트는-어떻게-작동하는가-엔진-런타임-콜스택"><a href="#자바스크립트는-어떻게-작동하는가-엔진-런타임-콜스택" class="headerlink" title="자바스크립트는 어떻게 작동하는가: 엔진, 런타임, 콜스택"></a>자바스크립트는 어떻게 작동하는가: 엔진, 런타임, 콜스택</h2><ul>
+<li>자바스크립트가 단일 쓰레드(Single-threaded)이고 콜백 큐(callback queue) 이용</li>
+<li>자바스크립트 엔진은 구글의 V8엔진입니다. V8엔진은 크롬과 노드js에서 사용됩니다.</li>
+</ul>
+<h4 id="V8엔진은-두-부분으로-구성됩니다"><a href="#V8엔진은-두-부분으로-구성됩니다" class="headerlink" title="V8엔진은 두 부분으로 구성됩니다."></a>V8엔진은 두 부분으로 구성됩니다.</h4><ul>
+<li>메모리힙(Memory Heap): 메모리할당이 이루어지는 곳</li>
+<li>콜스택(Call Stack): 코드가 실행되면서 스택 프레임이 쌓이는 곳입니다.</li>
+</ul>
+<h4 id="런타임"><a href="#런타임" class="headerlink" title="런타임"></a>런타임</h4><ul>
+<li>자바스크립트의 엔진이 중요하기 하지만 엔진만으로 모든 것이 이루지는 것은 아닙니다. 브라우저가 제공하는 웹 API라는 것도 있어서 DOM, AJAX, <code>setTimeout</code> 등이 여기에 포함됩니다. 또한 <strong>이벤트루프</strong>와 <strong>콜백큐</strong>도 있습니다.</li>
+</ul>
+<h4 id="콜스택"><a href="#콜스택" class="headerlink" title="콜스택"></a>콜스택</h4><ul>
+<li>자바스크립트는 싱글 쓰레드(single-threaded) 프로그래밍 언어입니다. 다시 말하면 콜스택이 하나라는 뜻입니다. 따라서 한번에 하나의 일만 할 수 있습니다.</li>
+<li>콜스택은 우리가 프로그램의 어디에 있는지를 기록하는 자료구조입니다.</li>
+<li>함수 안으로 들어가게 되면 그 함수는 스택의 제일 위에 놓이게 됩니다. 실행이 완료되면 제거됩니다.</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">multiply</span>(<span class="params">x, y</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> x * y ;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">printSquare</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> s = multiply(x, x);</span><br><span class="line">  <span class="built_in">console</span>.log(s);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">printSquare(<span class="number">5</span>);</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>Step1</th>
+<th>Step2</th>
+<th>Step3</th>
+<th>Step4</th>
+<th>Step5</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-</td>
+<td>multiply(x, y)</td>
+<td>console.log(s);</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>printSquare(5)</td>
+<td>printSquare(5)</td>
+<td>printSquare(5)</td>
+<td>printSquare(5)</td>
+<td></td>
+</tr>
+</tbody></table>
+<ul>
+<li>콜스택의 각각은 <strong>스택프레임(Stack Frame)</strong>이라고 부릅니다.</li>
+<li>예외가 발생했을때 스택트레이스가 만들어지는 방식입니다. 스택 트레이스란 기본적으로 예외가 발생했을때 콜스택의 상태입니다.</li>
+</ul>
+<p><em>스택트레이스 생성</em></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'SessionStack will help you resolve crashes :)'</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    foo();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">start</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    bar();</span><br><span class="line">&#125;</span><br><span class="line">start();</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>스택 날림(Blowing the stack)</strong> : 콜 스택의 최대 크기에 다다랐을때 나타나는 현상(재귀 함수에서 많이 나타남)</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  foo();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">foo();</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>Step1</th>
+<th>Step2</th>
+<th>Step3</th>
+<th>Step4</th>
+<th>Overflowing</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td></td>
+<td>foo()</td>
+</tr>
+<tr>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td></td>
+<td>foo()</td>
+</tr>
+<tr>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td></td>
+<td>foo()</td>
+</tr>
+<tr>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>foo()</td>
+<td>foo()</td>
+</tr>
+<tr>
+<td>-</td>
+<td>-</td>
+<td>foo()</td>
+<td>foo()</td>
+<td>foo()</td>
+</tr>
+<tr>
+<td>-</td>
+<td>foo()</td>
+<td>foo()</td>
+<td>foo()</td>
+<td>foo()</td>
+</tr>
+<tr>
+<td>foo()</td>
+<td>foo()</td>
+<td>foo()</td>
+<td>foo()</td>
+<td>foo()</td>
+</tr>
+</tbody></table>
+<p><code>Maximum call stack size exceeded</code> 에러 발생</p>
+<h4 id="동시성과-이벤트-루프"><a href="#동시성과-이벤트-루프" class="headerlink" title="동시성과 이벤트 루프"></a>동시성과 이벤트 루프</h4><p>만약 콜스택 내에 수행시간이 긴 함수가 있으면 어떻게 될까?</p>
+<ul>
+<li>긴 함수가 동작할때는 끝날때까지 아무것도 할 수 없다.</li>
+<li>브라우저 콜스택 내의 많은 작업을 수행하면서 긴 시간동안 응당이 없을 수도 있다.(이떄, 브라우저 에러창 뜨면서 응답없음 표시)</li>
+<li>UI를 막지 않고 브라우저가 응답없음 상태에 바지게 하지 않으면서 무거운 코드를 실행하려면 바로 <strong>비동기 콜백(asynchronous callbacks)</strong>을 사용해야 한다.</li>
+</ul>
+<h4 id="setTimeout"><a href="#setTimeout" class="headerlink" title="setTimeout"></a>setTimeout</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">"Before"</span>); <span class="comment">// A</span></span><br><span class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">"0초뒤"</span>); <span class="comment">// B</span></span><br><span class="line">&#125;,<span class="number">0</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"After"</span>); <span class="comment">// C</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>실행결과는 A-&gt;C-&gt;B 순이다.</li>
+<li><code>setTimeout</code>은 호출스택이 아닌 이벤트 큐에 추가한다.</li>
+<li>따라서 호출스택에 A가 쌓이고 없어지고 C가 쌓이고 없어진 다음 이벤트 큐에 있는 B가 실행된다.</li>
+</ul>
+<h4 id="참조"><a href="#참조" class="headerlink" title="참조"></a>참조</h4><hr>
+<ul>
+<li><a href="https://engineering.huiseoul.com/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8%EB%8A%94-%EC%96%B4%EB%96%BB%EA%B2%8C-%EC%9E%91%EB%8F%99%ED%95%98%EB%8A%94%EA%B0%80-%EC%97%94%EC%A7%84-%EB%9F%B0%ED%83%80%EC%9E%84-%EC%BD%9C%EC%8A%A4%ED%83%9D-%EA%B0%9C%EA%B4%80-ea47917c8442" rel="external nofollow noopener noreferrer" target="_blank">Huiseoul Enginnering</a></li>
+<li><a href="http://meetup.toast.com/posts/89" rel="external nofollow noopener noreferrer" target="_blank">TOAST</a></li>
+</ul>
+
+            </div>
+          
+
+    
+      <footer class="post-footer">
+		
+		<div class="post-tags">
+		  
+			<a href="/tags/javascript/">javascript</a>
+		  
+			<a href="/tags/eventloop/">eventloop</a>
+		  
+			<a href="/tags/setTimeout/">setTimeout</a>
+		  
+			<a href="/tags/v8/">v8</a>
+		  
+		</div>
+		
+
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2018/01/25/react-event/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">React - event binding</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    
+    
+      <a class="next" href="/2017/12/21/react-redux-1/">
+        <span class="next-text nav-default">React - react-redux-1(reducer, connect, mapStateToProps)</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+        
+  <div class="comments" id="comments">
+    
+    <div style="text-align:center;">
+        <button class="btn" id="load-disqus" onclick="disqus.load();">Disqus 댓글 보기</button>
+    </div>
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+      </footer>
+    
+  </article>
+
+    </div>
+
+      </div>
+
+      <footer id="colophon"><span class="copyright-year">
+    
+        &copy;
+    
+        2017 -
+    
+    2020
+    <span class="footer-author">ddoka.</span>
+    <span class="power-by">
+        Powered by <a class="hexo-link" href="https://hexo.io/" rel="external nofollow noopener noreferrer" target="_blank">Hexo</a> and <a class="theme-link" href="https://github.com/frostfan/hexo-theme-polarbear" rel="external nofollow noopener noreferrer" target="_blank">Polar Bear</a>
+    </span>
+</span>
+
+  <script src="https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js"></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+    
+
+<script type="text/javascript">
+  var disqus_shortname = 'shldhee';
+  var disqus_identifier = '2017/12/21/javascript-runtime/';
+
+  var disqus_title = "JavaScript - Runtime";
+
+
+  var disqus = {
+    load : function disqus(){
+        if(typeof DISQUS !== 'object') {
+          (function () {
+          var s = document.createElement('script'); s.async = true;
+          s.type = 'text/javascript';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+          }());
+          $('#load-disqus').remove(); ///加载后移除按钮
+        }
+    }
+  }
+
+  
+    var disqus_config = function () {
+        this.page.url = disqus_url;
+        this.page.identifier = disqus_identifier;
+        this.page.title = disqus_title;
+    };
+  
+
+</script>
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+
+    <script type="text/javascript" src="/js/src/theme.js?v=1.1"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=1.1"></script>
+
+  </body>
+</html>

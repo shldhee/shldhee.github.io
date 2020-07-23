@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang>
+  <head><meta name="generator" content="Hexo 3.9.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
+<link rel="canonical" href="https://hasudoki.tistory.com/">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="description" content="JavaScript - var">
+
+
+
+
+  <meta name="keywords" content="javascript,var,hoisting,">
+
+
+
+
+
+  <link rel="alternate" href="/feed.xml" title="힘내서 공부해보자">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.png?v=1.1">
+
+
+
+<link rel="canonical" href="https://shldhee.github.io/2017/09/29/javascript-var/">
+
+
+<meta name="description" content="var 변수 선언은 변수, 선택적인 값으로 초기화된 변수를 선언합니다.  설명 var로 선언된 변수의 범위는 현재 실행 문맥인데, 그 문맥은 둘러싼 함수, 혹은 함수의 외부에 전역으로 선언된 변수도 될 수 있습니다.  123456789function x() &amp;#123;  var a = &quot;local&quot;;  b = &quot;global&quot;;&amp;#125;x();console">
+<meta name="keywords" content="javascript,var,hoisting">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript - var">
+<meta property="og:url" content="https://shldhee.github.io/2017/09/29/javascript-var/index.html">
+<meta property="og:site_name" content="힘내서 공부해보자">
+<meta property="og:description" content="var 변수 선언은 변수, 선택적인 값으로 초기화된 변수를 선언합니다.  설명 var로 선언된 변수의 범위는 현재 실행 문맥인데, 그 문맥은 둘러싼 함수, 혹은 함수의 외부에 전역으로 선언된 변수도 될 수 있습니다.  123456789function x() &amp;#123;  var a = &quot;local&quot;;  b = &quot;global&quot;;&amp;#125;x();console">
+<meta property="og:locale" content="en-En">
+<meta property="og:updated_time" content="2020-07-23T08:31:33.045Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript - var">
+<meta name="twitter:description" content="var 변수 선언은 변수, 선택적인 값으로 초기화된 변수를 선언합니다.  설명 var로 선언된 변수의 범위는 현재 실행 문맥인데, 그 문맥은 둘러싼 함수, 혹은 함수의 외부에 전역으로 선언된 변수도 될 수 있습니다.  123456789function x() &amp;#123;  var a = &quot;local&quot;;  b = &quot;global&quot;;&amp;#125;x();console">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+
+
+
+
+<script type="text/javascript">
+  var themeConfig = {
+    fancybox: {
+      enable: false
+    },
+  };
+</script>
+
+
+
+
+  
+
+  <script type="text/javascript">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-103254205-1', 'auto');
+        ga('send', 'pageview');
+  </script>
+
+
+
+    <title> JavaScript - var - 힘내서 공부해보자 </title>
+  </head>
+
+  <body>
+    <div id="page">
+      <header id="masthead"><div class="site-header-inner">
+    <h1 class="site-title">
+        <a href="/." class="logo">힘내서 공부해보자</a>
+    </h1>
+
+    <nav id="nav-top">
+        
+            <ul id="menu-top" class="nav-top-items">
+                
+                    <li class="menu-item">
+                        <a href="/archives">
+                            
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        
+  </nav>
+</div>
+
+      </header>
+      <div id="content">
+        
+    <div id="primary">
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          JavaScript - var
+        
+      </h1>
+
+      <time class="post-time">
+          Sep 29 2017
+      </time>
+    </header>
+
+
+
+    
+            <div class="post-content">
+            <h1 id="var"><a href="#var" class="headerlink" title="var"></a>var</h1><blockquote>
+<p>변수 선언은 변수, 선택적인 값으로 초기화된 변수를 선언합니다.</p>
+</blockquote>
+<h2 id="설명"><a href="#설명" class="headerlink" title="설명"></a>설명</h2><ul>
+<li>var로 선언된 변수의 범위는 현재 실행 문맥인데, 그 문맥은 둘러싼 함수, 혹은 함수의 외부에 전역으로 선언된 변수도 될 수 있습니다.</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">x</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> a = <span class="string">"local"</span>;</span><br><span class="line">  b = <span class="string">"global"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">x();</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(a);</span><br><span class="line"><span class="built_in">console</span>.log(b);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>위와 같이 실행 하면 <code>Uncaught ReferenceError: a is not defined</code> 발생한다.</li>
+<li><code>x()</code> 함수 안에 변수 <code>a</code>는 함수 안에서만 존재한다.</li>
+<li><em>선언된 변수들은 변수가 선언된 실행 콘텍스트(execution context)안에서 만들어지기 때문이다.*</em></li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">x</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> a = <span class="string">"local"</span>;</span><br><span class="line">  b = <span class="string">"global"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">x();</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(b);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>위와 같이 실행하면 <code>&quot;global&quot;</code> 출력한다.</li>
+<li><em>선언되지 않은 변수들은 항상 전역변수이다.*</em></li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(a);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"still going..."</span>);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>ReferenceError: a is not defined</code> 출력</li>
+<li><em>선언되지 않은 변수들은 변수들을 할당하는 코드<code>(ex a = 0;)</code>가 실행되기 전까지는 존재하지 않는다.*</em></li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a;</span><br><span class="line"><span class="built_in">console</span>.log(a);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"still going..."</span>);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p><code>undefined</code></p>
+</li>
+<li><p><code>&quot;still going...&quot;</code> 출력</p>
+</li>
+<li><p><code>undefined</code>는 만들어졌지만 초기화 할당이 되지 않은 상태</p>
+</li>
+<li><p><em>선언된 변수들은 어떠한 코드가 실행되기 전에 만들어집니다.*</em></p>
+</li>
+</ul>
+<p><em>ECMAScript 5 안에 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode" rel="external nofollow noopener noreferrer" target="_blank">strict mode</a>, 선언되지 않은 변수에 할당하면 오류를 출력합니다.</em></p>
+<h3 id="var-호이스팅-hoisting"><a href="#var-호이스팅-hoisting" class="headerlink" title="var 호이스팅(hoisting)"></a>var 호이스팅(hoisting)</h3><blockquote>
+<p>위에 말했듯이 변수 선언들은 코드가 실행 되기 전에 처리된다.<br>따라서, 코드 안 어디서든 변수 선언은 최상위에 선언한것과 동등하다.<br>즉, 변수가 선언되기전에 사용될 수 있다는것을 위미합니다.</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hoisting = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">var</span> hoisting;</span><br><span class="line"><span class="built_in">console</span>.log(hoisting);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>위 코드는 아래처럼 작동된다.</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> hoisting;</span><br><span class="line">hoisting = <span class="number">1</span>;</span><br><span class="line"><span class="built_in">console</span>.log(hoisting);</span><br></pre></td></tr></table></figure>
+
+<h4 id="요약"><a href="#요약" class="headerlink" title="요약"></a>요약</h4><ul>
+<li>var를 사용한 선언된 변수는 현재 실행 문맥 즉, 실행 컨텍스트(execution context)에서 만들어져 그 안에서만 사용이 가능하다.</li>
+<li>var를 사용하지 않은 변수는 지역 변수로 선언된다.</li>
+<li>var 호이스팅(변수 선언들은 코드가 실행되기 전에 처리된다. 즉, 변수가 선언되기전에 사용될 수 있다는것을 의미한다.)</li>
+<li>var를 사용하는 것이 좋고, 최상단에 선언하는 것이 좋다.</li>
+</ul>
+<p>참조 : <a href="https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Statements/var" rel="external nofollow noopener noreferrer" target="_blank">mdn</a></p>
+
+            </div>
+          
+
+    
+      <footer class="post-footer">
+		
+		<div class="post-tags">
+		  
+			<a href="/tags/javascript/">javascript</a>
+		  
+			<a href="/tags/var/">var</a>
+		  
+			<a href="/tags/hoisting/">hoisting</a>
+		  
+		</div>
+		
+
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2017/09/29/closure/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">JavaScript - Scope, Lexical scoping, Closure</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    
+    
+      <a class="next" href="/2017/08/11/algo-4/">
+        <span class="next-text nav-default">Algorithm - getMinSum(Level2)</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+        
+  <div class="comments" id="comments">
+    
+    <div style="text-align:center;">
+        <button class="btn" id="load-disqus" onclick="disqus.load();">Disqus 댓글 보기</button>
+    </div>
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+      </footer>
+    
+  </article>
+
+    </div>
+
+      </div>
+
+      <footer id="colophon"><span class="copyright-year">
+    
+        &copy;
+    
+        2017 -
+    
+    2020
+    <span class="footer-author">ddoka.</span>
+    <span class="power-by">
+        Powered by <a class="hexo-link" href="https://hexo.io/" rel="external nofollow noopener noreferrer" target="_blank">Hexo</a> and <a class="theme-link" href="https://github.com/frostfan/hexo-theme-polarbear" rel="external nofollow noopener noreferrer" target="_blank">Polar Bear</a>
+    </span>
+</span>
+
+  <script src="https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js"></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+    
+
+<script type="text/javascript">
+  var disqus_shortname = 'shldhee';
+  var disqus_identifier = '2017/09/29/javascript-var/';
+
+  var disqus_title = "JavaScript - var";
+
+
+  var disqus = {
+    load : function disqus(){
+        if(typeof DISQUS !== 'object') {
+          (function () {
+          var s = document.createElement('script'); s.async = true;
+          s.type = 'text/javascript';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+          }());
+          $('#load-disqus').remove(); ///加载后移除按钮
+        }
+    }
+  }
+
+  
+    var disqus_config = function () {
+        this.page.url = disqus_url;
+        this.page.identifier = disqus_identifier;
+        this.page.title = disqus_title;
+    };
+  
+
+</script>
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+
+    <script type="text/javascript" src="/js/src/theme.js?v=1.1"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=1.1"></script>
+
+  </body>
+</html>
