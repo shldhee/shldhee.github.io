@@ -8,6 +8,14 @@
     </url>
 
     <url>
+        <loc>https://shldhee.github.io/2018/04/08/DOM/</loc>
+        <lastmod>2021-11-03T02:07:51.339Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://shldhee.github.io/2017/12/21/react-redux-1/</loc>
         <lastmod>2020-07-23T08:31:33.046Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -146,14 +154,6 @@
     <url>
         <loc>https://shldhee.github.io/2018/02/20/git-branch/</loc>
         <lastmod>2020-07-23T08:31:33.044Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://shldhee.github.io/2018/04/08/DOM/</loc>
-        <lastmod>2020-07-23T08:31:33.043Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
