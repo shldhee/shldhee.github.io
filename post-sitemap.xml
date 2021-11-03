@@ -9,7 +9,7 @@
 
     <url>
         <loc>https://shldhee.github.io/2018/04/08/DOM/</loc>
-        <lastmod>2021-11-03T02:07:51.339Z</lastmod>
+        <lastmod>2021-11-03T02:10:04.556Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -32,7 +32,7 @@
     </url>
 
     <url>
-        <loc>https://shldhee.github.io/2018/03/30/http-1/</loc>
+        <loc>https://shldhee.github.io/2019/04/17/javascript-native/</loc>
         <lastmod>2020-07-23T08:31:33.045Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -48,7 +48,7 @@
     </url>
 
     <url>
-        <loc>https://shldhee.github.io/2019/04/17/javascript-native/</loc>
+        <loc>https://shldhee.github.io/2019/04/09/javascript-type/</loc>
         <lastmod>2020-07-23T08:31:33.045Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -56,7 +56,7 @@
     </url>
 
     <url>
-        <loc>https://shldhee.github.io/2019/04/09/javascript-type/</loc>
+        <loc>https://shldhee.github.io/2018/03/30/http-1/</loc>
         <lastmod>2020-07-23T08:31:33.045Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -96,15 +96,7 @@
     </url>
 
     <url>
-        <loc>https://shldhee.github.io/2017/07/31/algo-3/</loc>
-        <lastmod>2020-07-23T08:31:33.044Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://shldhee.github.io/2017/12/20/algo-5/</loc>
+        <loc>https://shldhee.github.io/2017/08/11/algo-4/</loc>
         <lastmod>2020-07-23T08:31:33.044Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -120,7 +112,7 @@
     </url>
 
     <url>
-        <loc>https://shldhee.github.io/2017/08/11/algo-4/</loc>
+        <loc>https://shldhee.github.io/2017/07/31/algo-3/</loc>
         <lastmod>2020-07-23T08:31:33.044Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -129,6 +121,14 @@
 
     <url>
         <loc>https://shldhee.github.io/2017/07/25/algo_1/</loc>
+        <lastmod>2020-07-23T08:31:33.044Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://shldhee.github.io/2017/12/20/algo-5/</loc>
         <lastmod>2020-07-23T08:31:33.044Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
