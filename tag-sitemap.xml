@@ -108,27 +108,6 @@
     </url>
 
     <url>
-        <loc>https://shldhee.github.io/tags/response/</loc>
-        <lastmod>2020-07-23T08:31:33.045Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://shldhee.github.io/tags/requrest/</loc>
-        <lastmod>2020-07-23T08:31:33.045Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://shldhee.github.io/tags/http/</loc>
-        <lastmod>2020-07-23T08:31:33.045Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://shldhee.github.io/tags/undeclared/</loc>
         <lastmod>2020-07-23T08:31:33.045Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -227,22 +206,29 @@
     </url>
 
     <url>
-        <loc>https://shldhee.github.io/tags/Javascript/</loc>
+        <loc>https://shldhee.github.io/tags/response/</loc>
         <lastmod>2020-07-23T08:31:33.045Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://shldhee.github.io/tags/branch/</loc>
-        <lastmod>2020-07-23T08:31:33.044Z</lastmod>
+        <loc>https://shldhee.github.io/tags/requrest/</loc>
+        <lastmod>2020-07-23T08:31:33.045Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://shldhee.github.io/tags/git/</loc>
-        <lastmod>2020-07-23T08:31:33.044Z</lastmod>
+        <loc>https://shldhee.github.io/tags/http/</loc>
+        <lastmod>2020-07-23T08:31:33.045Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://shldhee.github.io/tags/Javascript/</loc>
+        <lastmod>2020-07-23T08:31:33.045Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
@@ -270,6 +256,20 @@
 
     <url>
         <loc>https://shldhee.github.io/tags/CSS/</loc>
+        <lastmod>2020-07-23T08:31:33.044Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://shldhee.github.io/tags/branch/</loc>
+        <lastmod>2020-07-23T08:31:33.044Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://shldhee.github.io/tags/git/</loc>
         <lastmod>2020-07-23T08:31:33.044Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
