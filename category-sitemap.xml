@@ -8,6 +8,13 @@
     </url>
 
     <url>
+        <loc>https://shldhee.github.io/categories/CSS/</loc>
+        <lastmod>2021-11-04T09:16:21.056Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://shldhee.github.io/categories/javascript/</loc>
         <lastmod>2021-11-03T02:10:04.556Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -31,13 +38,6 @@
     <url>
         <loc>https://shldhee.github.io/categories/http/</loc>
         <lastmod>2020-07-23T08:31:33.045Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://shldhee.github.io/categories/CSS/</loc>
-        <lastmod>2020-07-23T08:31:33.044Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
